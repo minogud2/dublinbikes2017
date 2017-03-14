@@ -1,0 +1,10 @@
+from jsontosql import parse_Json
+import sys
+from nose.tools import *
+
+def test_calculate():
+    ok_(calculate(2,3)==6, 'calculation is incorrect')
+
+def test_version():
+    eq_(sys.version_info[0], 3, 'Python is not version 3')
+

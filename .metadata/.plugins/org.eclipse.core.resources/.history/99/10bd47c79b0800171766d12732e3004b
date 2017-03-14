@@ -1,0 +1,58 @@
+import json
+import sys
+import sqlite3 as lt
+from pprint import pprint
+# 
+
+def open_Json(json_info):
+    with open(json_info) as jsonfile:
+        data = json.load(jsonfile)   
+        # prints a list with multiple dictionaries inside of it.
+        #pprint(data)
+               
+    return data
+
+def convert_Sql(data):
+    # to access an item in the list, you access the first dictionary.Then the key See below
+    # print(data[1]["number"])
+    
+#   To iterate through the entire list of dictionaries, list variables were created for each column.
+
+    number = []
+    name = []
+    address = []
+    latitude = []
+    longitude = []
+    
+    i = 0
+    while i < len(data):
+        number.append(data[i]["number"])
+        name.append(data[i]["name"])
+        address.append(data[i]["address"])
+        latitude.append(data[i]["latitude"])
+        longitude.append(data[i]["longitude"])
+        i += 1  
+    
+    # create database to parse data into. 
+    
+    con = lt.connect('db_Dataset.db')
+    
+    # grab con and create table and enter input variable records. 
+    # REAL is a floating point number in SQLITE3
+    
+    with con:
+        cur = con.cursor()
+        cur.execute("CREATE TABLE Static(number INT, name TEXT, address TEXT, latitude REAL, longitude REAL)")
+        cur.execute("INSERT INTO Static (number, name, address, latitude, longitude)")
+        
+        cur.close()
+        con.close()
+    
+
+    return None
+
+if __name__== '__main__':
+    file = 'static_dublin.json'
+    data = open_Json(file)
+    convert_Sql(data)
+    

@@ -1,0 +1,11 @@
+from jsontosql.parse_Json import *
+import sys
+from nose.tools import *
+
+def test_version():
+    eq_(sys.version_info[0], 3, 'Python is not version 3')
+
+@raises(Exception)
+def test_openJson():
+    ok_(open_Json(test_Json.json), 'calculation is incorrect')
+    raise TypeError("This test passes")
