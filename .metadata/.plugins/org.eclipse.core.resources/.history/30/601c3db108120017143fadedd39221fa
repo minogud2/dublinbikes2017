@@ -1,0 +1,61 @@
+'''
+Created on 26 Mar 2017
+
+@author: minogud2
+'''
+import json
+import sys
+import sqlite3 as lt
+from pprint import pprint
+
+def create_DB():
+    # create database to parse data into. 
+    lt.connect('dublin_BikesRDB.db')
+    return None
+    
+def open_StaticJson(json_info):
+    with open(json_info) as jsonfile:
+        data = json.load(jsonfile)   
+        # opens a list with multiple dictionaries inside of it.
+    return data
+
+def create_Tables(con):
+    try:
+        with con:
+            cur = con.cursor()
+            cur.execute("CREATE TABLE Static(num INT, Sname TEXT, addr TEXT, lat REAL, long REAL)")
+            cur.execute("CREATE TABLE Weather(num INT, Sname TEXT, addr TEXT, lat REAL, long REAL)")
+            cur.execute("CREATE TABLE Dynamic(num INT, Sname TEXT, addr TEXT, lat REAL, long REAL)")
+    except TypeError as e:
+        print(e)
+        return None
+    finally:
+        cur.close()
+        con.close()
+            
+def insert_Static(con, data):
+    try:
+        with con:
+            cur = con.cursor()
+            for i in range(0, len(data)):
+                cur.execute("INSERT INTO Static (num, Sname, addr, lat, long) VALUES(?,?,?,?,?)",
+                            (number[i], name[i], address[i], latitude[i], longitude[i]))
+                con.commit()
+    except TypeError as e:
+        print(e)
+        return None
+
+    finally:
+        cur.close()
+        con.close()
+        
+def weather_ToSQL(con):
+    try:
+        with con:
+            cur = con.cursor()
+
+
+
+
+if __name__ == '__main__':
+    pass

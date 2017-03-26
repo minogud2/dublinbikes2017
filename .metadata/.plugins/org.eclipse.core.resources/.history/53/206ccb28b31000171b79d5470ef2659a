@@ -1,0 +1,13 @@
+import requests
+import json
+import pprint as pprint
+
+
+# print(dir(requests))
+# 
+# help(requests.get)
+
+url='http://api.openweathermap.org/data/2.5/weather?id=2964574&APPID=33e340fbba76a4645e26160abb37f014'
+weather_page = requests.get(url).json()
+
+print(weather_page)
