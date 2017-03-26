@@ -1,0 +1,19 @@
+'''
+Created on 26 Mar 2017
+
+@author: minogud2
+'''
+
+import sqlite3 as lt
+from pprint import pprint   
+
+con = lt.connect('db_Dataset.db')
+cur = con.cursor()
+cur.execute('SELECT * FROM Static')
+data2 = cur.fetchall()
+pprint.pprint(data2)
+cur.close()
+con.close()
+
+if __name__ == '__main__':
+    pass
