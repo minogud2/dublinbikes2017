@@ -16,7 +16,7 @@ def get_Data(url):
     weather_id = data['weather'][0]['id']
     temperature = data['main']['temp']
     description = data['weather'][0]['description']
-    weather_icon = data['weather'][0]['icon']
+    weather_icon = data['sys']['sunset']
     cur.execute("INSERT INTO weather(timeStamp, weatherID, temp, desc, icon) VALUES (?,?,?,?,?)",
                 (date, weather_id, temperature, description, weather_icon)) 
     con.commit()

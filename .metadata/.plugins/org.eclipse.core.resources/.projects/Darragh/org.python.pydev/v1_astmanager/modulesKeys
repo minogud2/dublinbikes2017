@@ -1,4 +1,7 @@
 MODULES_MANAGER_V2
+jsontosql.Other.basicflask|C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\jsontosql\Other\basicflask.py
+jsontosql.Other.parse_Json|C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\jsontosql\Other\parse_Json.py
+jsontosql.Other.parse_Json2|C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\jsontosql\Other\parse_Json2.py
 jsontosql.__init__|C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\jsontosql\__init__.py
 jsontosql.create_DB|C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\jsontosql\create_DB.py
 jsontosql.dynamic_Weather|C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\jsontosql\dynamic_Weather.py
