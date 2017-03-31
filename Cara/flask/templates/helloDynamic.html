@@ -1,0 +1,11 @@
+{% block content %}
+
+<h2>Dublin Bikes Station Map </h2>
+	<br/>
+	<h3>Dynamic Data</h3>
+	{% for item in dbdata %}
+		<b>Number</b> {{ item.num}} | <b>Last Update</b> {{item.last_update}} <b>Status</b> {{ item.status}} <br/> 
+		<b>No. Bikes</b> {{ item.total_Bikes}} <b>Avail. Bikes</b> {{ item.avail_bikes}} <b>AvailOppBikes</b>{{ item.availAndOp_bikes}} </br></br>
+	{% endfor %}
+	
+{% endblock %}

@@ -1,0 +1,12 @@
+{% block content %}
+
+<h2>Dublin Bikes Station Map </h2>
+	<br/>
+	<h3>Static Data</h3>
+
+	{% for item in dbdata %}
+		<b>Number</b> {{ item.num}} | <b>Street</b> {{item.Sname}} <br/>
+		<b>Addr</b> {{ item.addr}} | <b>Lat\Long</b> {{ item.lat}} {{ item.long}} </br></br>
+	{% endfor %}
+	
+{% endblock %}
