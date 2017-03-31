@@ -1,0 +1,15 @@
+import requests
+import json
+
+
+# print(dir(requests))
+# 
+# help(requests.get)
+
+url='http://api.openweathermap.org/data/2.5/weather?id=2964574,de&units=metric'
+weather_page = requests.get(url).json
+
+
+data = json.loads(weather_page)
+
+print(data)

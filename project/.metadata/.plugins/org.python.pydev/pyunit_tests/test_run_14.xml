@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pydev-testrun version="1.0"?><pydev-testsuite>
+<summary errors="1" failures="0" finished="true" name="Test Run: 14" tests="0" total_time="Finished in: 0.06 secs."/>
+<test location="C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\tests\test.py" status="ok" test="test_version" time="0.00">
+<stdout/>
+<stderr/>
+</test>
+<test location="C:\Users\minogud2\Desktop\softEngAssignment4\Darragh\tests\test.py" status="error" test="test_openJson" time="0.01">
+<stdout/>
+<stderr><![CDATA[Traceback (most recent call last):
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\case.py", line 134, in run
+    self.runTest(result)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\case.py", line 152, in runTest
+    test(result)
+  File "C:\Users\minogud2\Anaconda3\lib\unittest\case.py", line 648, in __call__
+    return self.run(*args, **kwds)
+  File "C:\Users\minogud2\Anaconda3\lib\unittest\case.py", line 608, in run
+    self._feedErrorsToResult(result, outcome.errors)
+  File "C:\Users\minogud2\Anaconda3\lib\unittest\case.py", line 536, in _feedErrorsToResult
+    result.addFailure(test, exc_info)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\proxy.py", line 146, in addFailure
+    plugins.addFailure(self.test, err)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\plugins\manager.py", line 99, in __call__
+    return self.call(*arg, **kw)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\plugins\manager.py", line 167, in simple
+    result = meth(*arg, **kw)
+  File "C:\Users\minogud2\.p2\pool\plugins\org.python.pydev_5.5.0.201701191708\pysrc\_pydev_runfiles\pydev_runfiles_nose.py", line 126, in addFailure
+    err,
+  File "C:\Users\minogud2\.p2\pool\plugins\org.python.pydev_5.5.0.201701191708\pysrc\_pydev_runfiles\pydev_runfiles_nose.py", line 70, in report_cond
+    error_contents = self.get_io_from_error(error)
+  File "C:\Users\minogud2\.p2\pool\plugins\org.python.pydev_5.5.0.201701191708\pysrc\_pydev_runfiles\pydev_runfiles_nose.py", line 101, in get_io_from_error
+    import traceback;traceback.print_exception(etype, value, tb, file=s)
+  File "C:\Users\minogud2\Anaconda3\lib\traceback.py", line 100, in print_exception
+    type(value), value, tb, limit=limit).format(chain=chain):
+  File "C:\Users\minogud2\Anaconda3\lib\traceback.py", line 442, in __init__
+    if (exc_value and exc_value.__cause__ is not None
+AttributeError: 'str' object has no attribute '__cause__'
+]]></stderr>
+</test>
+<launch mode="run">
+<launch_memento><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration local="true" path="Darragh test.py"/>
+]]></launch_memento>
+</launch>
+</pydev-testsuite>
