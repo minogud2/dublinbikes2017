@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, session, flash, g
+from flask import Flask, render_template, url_for, request, session, flash, g, jsonify
 from functools import wraps
 import sys
 from flask_mysqldb import MySQLdb
@@ -7,14 +7,32 @@ import dbconnect
 #create appl object
 app = Flask(__name__)
 
+sql = """SELECT DISTINCT
+    static.num,
+    static.addr,
+    dynamictest.last_update,
+    dynamictest.status,
+    static.lat,
+    static.longti,
+    dynamictest.available_bikes,
+    dynamictest.available_bike_stands,
+    dynamictest.bike_stands,
+    dynamictest.banking
+FROM
+    test_dbikes.static,
+    test_dbikes.dynamictest
+WHERE
+    static.num = dynamictest.num
+ORDER BY last_update
+LIMIT 101;"""
+
 @app.route('/')
 def hello():
     g.db = dbconnect.connection()
     c = g.db.cursor()
-    cur = c.execute('select * from test_dbikes.dynamictest') 
-    
+    rows = c.execute('sql') 
     dbdata = []
-    rows = c.fetchall()
+
     for eachRow in rows[:15]:
         dbdata.append(dict(num=eachRow[0], last_update=eachRow[1], status=eachRow[2], available_bikes=eachRow[3], bike_stands=eachRow[4], available_bike_stands=eachRow[5], banking=eachRow[6]))
     
