@@ -1,0 +1,16 @@
+from flask_mysqldb import MySQLdb
+from db import connect_db
+
+def try_connection():
+    try:
+        c,conn = connect_db
+        print("hello")
+        return("okay")
+    except Exception as e:
+        print("bad")
+        return (str(e))
+    
+try_connection()
+
+if __name__ == '__main__':
+        app.run(debug=True)

@@ -1,0 +1,8 @@
+from flask_mysqldb import MySQLdb
+
+try:
+    db = MySQLdb.connect(host='localhost',user='root',password='4m3hmpp7', database='test_dbikes')
+    print("It works")
+ 
+except:
+    print("It doesn't")

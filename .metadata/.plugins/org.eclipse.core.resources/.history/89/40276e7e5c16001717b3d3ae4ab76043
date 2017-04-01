@@ -1,0 +1,8 @@
+from flask_mysqldb import MySQLdb
+
+conn = MySQLdb.connect(host='localhost',user='root',password='4m3hmpp7', database='test_dbikes')
+c = conn.cursor()
+cur = c.execute('select * from test_dbikes.static') 
+result = cur.fetchall()
+for row in results:
+    print(row[0])

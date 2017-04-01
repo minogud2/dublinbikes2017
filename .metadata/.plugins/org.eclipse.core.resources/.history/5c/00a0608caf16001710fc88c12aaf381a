@@ -1,0 +1,12 @@
+import MySQLdb.connector
+
+
+def connect_db():
+    try:
+        conn = MySQLdb.connect(host='localhost',user='root',password='4m3hmpp7', database='test_dbikes')
+        c = conn.cursor()
+        return conn, c
+    
+    except MySQLdbError as e:
+           
+    

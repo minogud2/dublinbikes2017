@@ -1,0 +1,10 @@
+from flask_mysqldb import MySQLdb
+
+try:
+    conn = MySQLdb.connect(host='localhost',user='root',password='4m3hmpp7', database='test_dbikes')
+    c = conn.cursor()
+    c.execute('select num, last_update, status, total_Bikes, avail_bikes, availAndOp_bikes from dynamictest') 
+    print("It works")
+ 
+except:
+    print("It doesn't")

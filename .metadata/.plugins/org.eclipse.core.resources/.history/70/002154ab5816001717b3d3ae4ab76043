@@ -1,0 +1,29 @@
+from flask_mysqldb import MySQLdb
+
+# try:
+#     db = MySQLdb.connect(host='localhost',user='root',password='4m3hmpp7', database='test_dbikes')
+# 
+#     print("It works")
+# 
+# except:
+#     print("It doesn't")
+def connect_db():   
+        conn = MySQLdb.connect(host="localhost",
+                       user = "minogud2",
+                       passwd = "4m3hmpp7",
+                       # put your own password above if needed to work.
+                       db = "test_dbikes")
+        # instead of the local host, we put the aws url in the local host area. 
+        c = conn.cursor()
+        return c, conn
+    
+def try_connection():
+    try:
+        c,conn = connect_db()
+        print("hello")
+        return("okay")
+    except Exception as e:
+        print("bad")
+        return (str(e))
+
+try_connection()

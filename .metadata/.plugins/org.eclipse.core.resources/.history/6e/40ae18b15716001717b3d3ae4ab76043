@@ -1,0 +1,16 @@
+from flask_mysqldb import MySQLdb
+
+try:
+    db = MySQLdb.connect(host='localhost',user='root',password'4m3hmpp7', database='test_dbikes')
+
+    print("It works")
+
+# def connect_db():   
+#         conn = MySQLdb.connect(host="localhost",
+#                        user = "minogud2",
+#                        passwd = "4m3hmpp7",
+#                        # put your own password above if needed to work.
+#                        db = "test-data")
+#         # instead of the local host, we put the aws url in the local host area. 
+#         c = conn.cursor()
+#         return c, conn

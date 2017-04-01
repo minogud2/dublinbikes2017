@@ -1,0 +1,29 @@
+'''
+Created on 1 Apr 2017
+
+@author: minogud2
+'''
+from flask import Flask, render_template, url_for, request, session, flash, g, jsonify
+from functools import wraps
+from flask_mysqldb import MySQLdb
+import dbconnect
+
+#create appl object
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    g.db = dbconnect.connection()
+    c = g.db.cursor()
+    cur = c.execute('select * from test_dbikes.static') #, addr, lat, long from Static')
+    dbdata = []
+    rows = c.fetchall()
+    for eachRow in rows:
+        dbdata.append(dict(num=eachRow[0], Sname=eachRow[1], addr=eachRow[2], lat=eachRow[3], long=eachRow[4]))
+
+    c.close()
+    g.db.close()
+    return render_template('helloStatic.html', dbdata=dbdata)
+   
+if __name__ == '__main__':
+        app.run(debug=True)

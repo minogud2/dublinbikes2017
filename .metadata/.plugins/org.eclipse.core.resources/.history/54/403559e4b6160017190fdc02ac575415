@@ -1,0 +1,27 @@
+'''
+Created on 1 Apr 2017
+
+@author: minogud2
+'''
+from flask import Flask, render_template, url_for, request, session, flash, g
+from functools import wraps
+from flask_mysqldb import MySQLdb
+import dbconnect
+
+#create appl object
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    conn = dbconnect.connection()
+    g.db = conn
+    cur = g.db.execute('select num, Sname, addr, lat, long from Static') #, addr, lat, long from Static')
+    dbdata = []
+    for row in cur.fetchall():
+            dbdata.append(dict(num=row[0], Sname=row[1], addr=row[2], lat=row[3], long=row[4]))
+
+    g.db.close()
+    return render_template('helloStatic.html', dbdata=dbdata)
+    
+if __name__ == '__main__':
+        app.run(debug=True)

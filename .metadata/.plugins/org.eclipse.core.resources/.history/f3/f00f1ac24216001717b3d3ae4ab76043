@@ -1,0 +1,12 @@
+from flask_mysqldb import MySQLdb
+
+def try_connection():
+    try:
+        c,conn = connect_db
+        print("hello")
+        return("okay")
+    except Exception as e:
+        print("bad")
+        return (str(e))
+    
+try_connection()

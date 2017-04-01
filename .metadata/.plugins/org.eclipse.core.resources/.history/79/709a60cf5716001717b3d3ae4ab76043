@@ -1,0 +1,13 @@
+from
+
+def try_connection():
+    try:
+        c,conn = connect_db()
+        print("hello")
+        return("okay")
+    except Exception as e:
+        print("bad")
+        return (str(e))
+    
+if __name__ == '__main__':
+    try_connection()

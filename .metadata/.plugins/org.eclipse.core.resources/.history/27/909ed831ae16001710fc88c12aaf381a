@@ -1,0 +1,31 @@
+from flask import Flask, render_template, url_for, request, session, flash, g
+from functools import wraps
+import sys
+
+#create appl object
+app = Flask(__name__)
+   
+@app.route('/')
+
+# def hello():       
+#         g.db = connect_db()
+#         cur = g.db.execute('select num, last_update, status, total_Bikes, avail_bikes, availAndOp_bikes from dynamictest') 
+#         dbdata = []
+#         for row in cur.fetchall():
+#                 dbdata.append(dict(num=row[0], last_update=row[1], status=row[2], total_Bikes=row[3], avail_bikes=row[4], availAndOp_bikes=row[5]))
+#  
+#         g.db.close()
+#         return render_template('helloDynamic.html', dbdata=dbdata)
+
+def connect_db():   
+        conn = MySQLdb.connect(host="localhost",
+                       user = "minogud2",
+                       passwd = "4m3hmpp7",
+                       # put your own password above if needed to work.
+                       db = "test_dbikes")
+        # instead of the local host, we put the aws url in the local host area. 
+        c = conn.cursor()
+        return c, conn
+
+if __name__ == '__main__':
+        app.run(debug=True)

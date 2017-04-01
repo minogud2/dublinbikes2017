@@ -1,0 +1,13 @@
+from flask_mysqldb import MySQLdb
+
+try:
+    conn = MySQLdb.connect(host='localhost',user='root',password='4m3hmpp7', database='test_dbikes')
+    c = conn.cursor()
+    cur = c.execute('select num, last_update, status, total_Bikes, avail_bikes, availAndOp_bikes from dynamictest') 
+        dbdata = []
+        for row in cur.fetchall():
+                dbdata.append(dict(num=row[0], last_update=row[1], status=row[2], total_Bikes=row[3], avail_bikes=row[4], availAndOp_bikes=row[5]))
+  
+ 
+except:
+    print("It doesn't")
