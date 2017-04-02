@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello():
     g.db = dbconnect.connection()
     c = g.db.cursor()
-    cur = c.execute('select * from test_dbikes.dynamictest') 
+    cur = c.execute('select * from DynamicTest order by limit 0 offset 102') 
     
     dbdata = []
     rows = c.fetchall()
