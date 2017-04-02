@@ -5,8 +5,9 @@ Created on 1 Apr 2017
 '''
 from flask import Flask, render_template, url_for, request, session, flash, g, jsonify
 from functools import wraps
-from flask_mysqldb import MySQLdb
 import dbconnect
+from flask_mysqldb import MySQLdb
+
 
 #create appl object
 app = Flask(__name__)
@@ -15,7 +16,7 @@ app = Flask(__name__)
 def hello():
     g.db = dbconnect.connection()
     c = g.db.cursor()
-    cur = c.execute('select * from test_dbikes.static') #, addr, lat, long from Static')
+    cur = c.execute('select * from mysqldb.static') #, addr, lat, long from Static')
     dbdata = []
     rows = c.fetchall()
     for eachRow in rows:

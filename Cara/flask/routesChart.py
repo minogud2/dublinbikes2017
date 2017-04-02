@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, request, session, flash, g
-from functools import wraps
+from flask_googlecharts import GoogleCharts, BarChart
+
+import os
 import sqlite3 as lt
-#import dbconnect
-#from flask_mysqldb import MySQLdb
 
 #create appl object
 app = Flask(__name__, template_folder="templates")
+charts = GoogleCharts(app)
 
 
 @app.route('/')
@@ -27,10 +28,17 @@ def hello():
     #return array or list and send data to google charts
     #write py function and call from js
 
-
 def connect_db():
         app.database = "Dublin_BikesRDB.db"
         return lt.connect(app.database)
+
+def readjson():
+    filename = os.path.join(app.static_folder, 'dynamic.json')
+    with open(filename) as f:
+        dyn_json = json.load(f)
+
+def make_chart():
+    my_chart = BarChart("my_chart", options={'title': 'My Test Chart'}, dyn_json)
 
 if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)

@@ -10,8 +10,8 @@ def connection():
     try:
         conn = MySQLdb.connect(host='localhost',
                                user='root',
-                               password='4m3hmpp7', 
-                               database='test_dbikes')
+                               password='yeroleDC1', 
+                               database='mysqldb')
 #        c = conn.cursor()
         return conn
     

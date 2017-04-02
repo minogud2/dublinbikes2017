@@ -14,7 +14,7 @@ sql = """SELECT DISTINCT
     weather.descp,
     weather.icons
 FROM
-    test_dbikes.weather
+    weather
 ORDER BY timeStamp
 LIMIT 1;"""
 

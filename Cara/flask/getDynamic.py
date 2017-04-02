@@ -19,8 +19,8 @@ sql = """SELECT DISTINCT
     dynamictest.bike_stands,
     dynamictest.banking
 FROM
-    test_dbikes.static,
-    test_dbikes.dynamictest
+    static,
+    dynamictest
 WHERE
     static.num = dynamictest.num
 ORDER BY last_update
