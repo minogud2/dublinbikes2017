@@ -1,0 +1,26 @@
+from flask import Flask, render_template, url_for, request, session, flash, g
+from functools import wraps
+import sys
+from flask_mysqldb import MySQLdb
+import dbconnect
+
+#create appl object
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    g.db = dbconnect.connection()
+    c = g.db.cursor()
+    cur = c.execute('select * from test_dbikes.dynamictest') 
+    
+    dbdata = []
+    rows = c.fetchall()
+    for eachRow in rows[:15]:
+        dbdata.append(dict(num=eachRow[0], last_update=eachRow[1], status=eachRow[2], available_bikes=eachRow[3], bike_stands=eachRow[4], available_bike_stands=eachRow[5], banking=eachRow[6]))
+    
+    c.close()
+    g.db.close()
+    return render_template('helloDynamic.html', dbdata=dbdata)
+
+if __name__ == '__main__':
+        app.run(debug=True)
