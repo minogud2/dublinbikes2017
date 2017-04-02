@@ -1,0 +1,22 @@
+
+{% block content %}
+
+<h2>Dublin Bikes Station Map </h2>
+	<br/>
+	<h3>Dynamic Data</h3>
+
+<script>
+
+var chartData = [
+{% for chart in dbdata %}
+    {
+    "num": {{ chart.num}} 
+    "Sname": {{ chart.Sname}}  
+    "time": {{ chart.time}} 
+    "bikes": {{ chart.bikes}} 
+    }
+    {{ if not loop.last }} , {{ endif }}
+{% endfor %}
+]
+
+{% endblock %}

@@ -1,0 +1,37 @@
+<html>
+<head>
+    
+    
+</head>
+<body>
+    
+<div id="my_chart" style="width: 500px; height: 300px">
+</div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+<script>
+   google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(drawChart);
+   function drawChart() {
+    // Create and populate the data table.
+    var data = google.visualization.arrayToDataTable([
+      ['Hour', 'Bikes Available'],
+      ['09:00', 40],
+      ['11:00', 20],
+      ['13:00', 24],
+      ['15:00', 7],
+      ['17:00', 23],
+      ['19:00', 39],
+      ['21:00', 28],
+      ['23:00', 40]
+    ]);
+    var options = {
+      title: 'What many bikes are available throughout the day at this station?'
+    };
+     // Create and draw the visualization.
+    new google.visualization.LineChart(
+      document.getElementById('my_chart')).draw(data, options);
+  }
+</script> 
+    
+</body>    
+</html>
