@@ -8,11 +8,10 @@ from flask_mysqldb import MySQLdb
 
 def connection():
     try:
-        conn = MySQLdb.connect(host='localhost',
-                               user='root',
-                               password='4m3hmpp7', 
-                               database='test_dbikes')
-#        c = conn.cursor()
+        conn = MySQLdb.connect(host='dublinbike.clpyaelniude.us-west-2.rds.amazonaws.com',
+                               user='Tao',
+                               password='abcd2530', 
+                               database='dublinbike18')
         return conn
     
     except Exception as e:

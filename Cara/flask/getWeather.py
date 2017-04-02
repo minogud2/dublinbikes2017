@@ -14,8 +14,8 @@ sql = """SELECT DISTINCT
     weather.descp,
     weather.icons
 FROM
-    test_dbikes.weather
-ORDER BY timeStamp
+    weather
+ORDER BY timeStamp DESC
 LIMIT 1;"""
 
 @app.route('/')
