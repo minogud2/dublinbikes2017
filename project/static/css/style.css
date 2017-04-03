@@ -63,17 +63,43 @@ visibility : visible;
 
 #content1 {
 display : block;
-overflow : auto;
 width : 300px;
 height : 400px;
+        overflow: hidden;
 }
 
 #displayWeather{
 width : 200px;
+height : 400px;
 padding-left: 50px;
 display : inline-block;
-overflow : auto;
-font-size: 8px;
+overflow: hidden;
 color: white;
-font-family : 'Pacifico', cursive;
+font-family: 'Dosis', sans-serif;
 }
+
+#wTemp1 {
+  font-size: 70px !important;
+    display : inline-block;
+}
+
+#wTemp2 {
+  font-size: 100px;
+    display : inline;
+}
+
+#wTemp3 {
+  font-size: 60px;
+    display : inline;
+}
+#wIcon {
+    font-size: 100px;
+    display : inline;
+    margin: auto;
+}
+
+#wDesc {
+  font-size: 30px;
+  display : inline-block;   
+    overflow: hidden;
+   }
