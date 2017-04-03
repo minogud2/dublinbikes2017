@@ -9,10 +9,10 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     g.db = connect_db()
-    cur = g.db.execute('select num, Sname, addr, lat, long from Static') #, addr, lat, long from Static')
+    cur = g.db.execute('select num, Sname, lat, long from Static') #, addr, lat, long from Static')
     dbdata = []
     for row in cur.fetchall():
-            dbdata.append(dict(num=row[0], Sname=row[1], addr=row[2], lat=row[3], long=row[4]))
+            dbdata.append(dict(num=row[0], Sname=row[1], lat=row[2], long=row[3]))
 
     g.db.close()
     return render_template('helloStatic.html', dbdata=json.dumps(dbdata))
@@ -28,13 +28,3 @@ def connect_db():
 
 if __name__ == '__main__':
         app.run(debug=True)
-
-@ lru_cache
-_.foreach #_ library for js
-#pd.pead_sql_query(, engine, params={"number":station id}, df panads)
-#return jsonify(data=json.dumps(list
-#%(number
-#p convert datetimsse# )
-#/occupancy/13,
-#rest api endpoints
-#load jquery ,lodashjs, bootstrap,app.js,loader.js

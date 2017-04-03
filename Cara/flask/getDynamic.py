@@ -37,6 +37,7 @@ def get_mainpage():
         dbdata.append(eachRow)
     c.close()
     g.db.close()
+    #return render_template('helloStatic.html', dbdata=dbdata)
     return jsonify(dbdata=dbdata)
 
 if __name__ == '__main__':
