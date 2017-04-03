@@ -26,3 +26,5 @@ class Dynamic(db.Model):
     bike_stands = db.Column('bike_stands', db.Int(11))
     available_bike_stands = db.Column('available_bike_stands', db.Int(11))
     banking = db.Column('banking', db.TinyInt)
+
+    #just for static info

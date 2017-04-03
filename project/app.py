@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, session, flash, g
 from functools import wraps
 import sys
 from flask_mysqldb import MySQLdb
+#import pandas as pd
 import dbconnect
 from flask import Flask, g, jsonify,render_template
 
@@ -51,8 +52,6 @@ def staticStation():
 
     return jsonify(stations=stations)
 
-
-
 sql = """SELECT DISTINCT
     static.num,
     static.addr,
@@ -82,6 +81,8 @@ FROM
     weather
 ORDER BY timeStamp DESC
 LIMIT 1;"""
+
+
 @app.route('/stations1')
 def get_mainpage():
     g.db = dbconnect.connection()
@@ -107,7 +108,6 @@ def get_weather():
     c.close()
     g.db.close()
     return jsonify(weather=weather)
-
 
 
 if __name__ == '__main__':

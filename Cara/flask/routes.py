@@ -37,8 +37,8 @@ if __name__ == '__main__':
 <<<<<<< HEAD
         app.run(debug=True)
 
-@ lru_cache
-_.foreach #_ library for js
+#@ lru_cache
+#_.foreach #_ library for js
 #pd.pead_sql_query(, engine, params={"number":station id}, df panads)
 #return jsonify(data=json.dumps(list
 #%(number
