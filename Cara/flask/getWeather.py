@@ -15,7 +15,11 @@ sql = """SELECT DISTINCT
     weather.icons
 FROM
     weather
+<<<<<<< HEAD
+ORDER BY timeStamp
+=======
 ORDER BY timeStamp DESC
+>>>>>>> 0c25ed2088ae9fa222413612ebad0b3ec4949e2b
 LIMIT 1;"""
 
 @app.route('/')

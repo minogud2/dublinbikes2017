@@ -20,7 +20,11 @@ sql = """SELECT DISTINCT
     DynamicTest.banking
 FROM
     static,
+<<<<<<< HEAD
+    dynamictest
+=======
     DynamicTest
+>>>>>>> 0c25ed2088ae9fa222413612ebad0b3ec4949e2b
 WHERE
     static.num = DynamicTest.num
 ORDER BY last_update ASC
