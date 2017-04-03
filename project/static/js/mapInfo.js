@@ -2,10 +2,10 @@ $(document).ready(function(){
   initMap();
 });
 
-function initMap() {
+function initMap() {     
         var styledMapType = new google.maps.StyledMapType(
          [
-  {
+    {
     "elementType": "geometry",
     "stylers": [
       {
@@ -258,52 +258,65 @@ function initMap() {
 ],
             {name: 'Styled Map'})
 
-        var locations = [ //where to pull in map data, db, json?
-            [42, 'SMITHFIELD NORTH', 'Smithfield North', 53.349562, -6.278198],
-             [30, 'PARNELL SQUARE NORTH', 'Parnell Square North', 53.353462, -6.265305],
-             [32, 'PEARSE STREET', 'Pearse Street', 53.344304, -6.250427],
-             [48, 'EXCISE WALK', 'Excise Walk', 53.347777, -6.244239], 
-             [13, 'FITZWILLIAM SQUARE WEST', 'Fitzwilliam Square West', 53.336074, -6.252825],
-             [81, 'ST. JAMES HOSPITAL (CENTRAL)', 'St. James Hospital (Central)', 53.339983, -6.295594],
-             [68, 'HANOVER QUAY', 'Hanover Quay', 53.344115, -6.237153],
-             [74, 'OLIVER BOND STREET', 'Oliver Bond Street', 53.343893, -6.280531],
-             [87,'COLLINS BARRACKS MUSEUM','Collins Barracks Museum', 53.347477, -6.28525],
-             [84, 'BROOKFIELD ROAD', 'Brookfield Road', 53.339005, -6.300217]
-        ];
-                
+
+        
+        
+        
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(53.3498053, -6.260309699999993), 
           zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-    
-        var infowindow = new google.maps.InfoWindow();
-        var marker, i;
+        
+       $.getJSON("http://127.0.0.1:5000/stations1", null, function(data){
+          if ('stations' in data) {
+              var locations = data.stations; 
+              // console.log(locations)
+            }
+            var infowindow = null;
+            infowindow = new google.maps.InfoWindow({
+                content: "holding..."
+            });
+            var marker, i;
 
         for (var i = 0; i < locations.length; i++) {  
             var value = locations[i];
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(value[3], value[4]),
-                map: map
-          });    
+
             var contentString = '<div id="content">'+
              '<div id="siteNotice">'+'</div>'+
             '<div id="bodyContent">'+
-            '<p> ' + value[2] + '<br>Station: '+ value[1] + '<br>Available bikes: <b>' + value[3] + '</b><br>' + 'Free Stands: <b>' + value[4] + '</b></p>'+
+            '<p> ' + 'StationNo.: '+ value[0] + '<br>Station: '+ value[1] + '<br>Last Update: <b>'+ value[2]+'<br>Available bikes: <b>' + value[6] + '</b><br>' + 'Free Stands: <b>' + value[7] + '</b></p>'+
             '</div>'+
             '</div>';
+            
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(value[4], value[5]),
+                map: map,
+                info: contentString
+
+          }); 
+             
+            
+            // infowindow.open(map, newMarkers[i]);
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
-                  infowindow.setContent(contentString);
-                  infowindow.open(map, marker);
+                  // infowindow.setContent(contentString);
+                  infowindow.setContent(this.info);
+                  infowindow.open(map, this);
+
                 }
               })(marker, i));
-            }
+        }
+        
+       }); 
+
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
+       
         map.data.setStyle({
         strokeOpacity: 0.1,
         fillOpacity: 0.0,
         strokeWeight: 2,
-        });         
-    }          
+        });
+    }     
+        

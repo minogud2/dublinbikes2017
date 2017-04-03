@@ -5,8 +5,13 @@ $(document).ready(function(){
     function getData(){
         var data;
 
-    $.getJSON('testWeather.json', function(d){
-        var data = d.dbdata;
+     $.getJSON("http://127.0.0.1:5000/weather", null, function(data){
+          if ('weather' in data) {
+              var data = data.dbdata; 
+              // console.log(weather)
+            }
+        
+       
         var weatherID = data[0][1];
         var weatherTemp = data[0][2];
         var weatherDesc = data[0][3];
