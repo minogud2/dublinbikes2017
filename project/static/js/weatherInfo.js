@@ -16,6 +16,7 @@ $(document).ready(function(){
            
     $("#wTemp1").addClass("wi wi-thermometer");
     $('#wTemp2').html("&nbsp" + weatherTemp);
+    $('#wTemp3').html("°C");
     $('#wIcon').html(weatherIcon);
     $('#wDesc').html(weatherDesc);
 })

@@ -1,7 +1,6 @@
 $(document).ready(function(){
   initMap();
 });
-
 function initMap() {     
         var styledMapType = new google.maps.StyledMapType(
          [
@@ -257,8 +256,6 @@ function initMap() {
   }
 ],
             {name: 'Styled Map'})
-
-
         
         
         
@@ -278,10 +275,8 @@ function initMap() {
                 content: "holding..."
             });
             var marker, i;
-
         for (var i = 0; i < locations.length; i++) {  
             var value = locations[i];
-
             var contentString = '<div id="content">'+
              '<div id="siteNotice">'+'</div>'+
             '<div id="bodyContent">'+
@@ -293,7 +288,6 @@ function initMap() {
                 position: new google.maps.LatLng(value[4], value[5]),
                 map: map,
                 info: contentString
-
           }); 
              
             
@@ -303,13 +297,11 @@ function initMap() {
                   // infowindow.setContent(contentString);
                   infowindow.setContent(this.info);
                   infowindow.open(map, this);
-
                 }
               })(marker, i));
         }
         
        }); 
-
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
        
@@ -318,5 +310,4 @@ function initMap() {
         fillOpacity: 0.0,
         strokeWeight: 2,
         });
-    }     
-        
+    }

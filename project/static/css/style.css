@@ -44,7 +44,7 @@ margin : auto;
 #primary {
 background-color : rgba(32, 32, 32, 0.7);
 width : 900px;
-height : 420px;
+height : 520px;
 padding : 10px;
 position : relative;
 text-align: left;
@@ -55,8 +55,8 @@ margin-bottom : 20px;
 #map {
 display : block;
 float : left;
-width : 600px;
-height : 400px;
+width : 700px;
+height : 500px;
 overflow : auto;
 visibility : visible;
 }
