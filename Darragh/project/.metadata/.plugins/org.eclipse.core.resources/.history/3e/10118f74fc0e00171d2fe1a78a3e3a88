@@ -1,0 +1,32 @@
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+    config = [
+        'description': 'softEngAssignment4',
+        'author': 'My Name',
+        'url': 'URL to get it at.',
+        'download_url': 'Where to download it.',
+        'author_email': 'My email.',
+        'version': '0.1',
+        'install_requires': ['nose'],
+        'packages': ['NAME'],
+        'scripts': [],
+        'name': 'projectname'
+    ]
+
+setup(
+    name ='assignment3_minogud2',
+    version = '0.1',
+    description = 'Program for LED display board which is contolled by sending commands to turn on/off rectangular regions',
+    url = 'https://github.com/ucd2017comp30670/assignment3-minogud2',
+    author = 'Darragh Minogue',
+    author_email = 'darragh.minogue@ucdconnect.ie',
+    license='GPL3',
+    packages=['src'],
+    entry_points={
+        'console_scripts': ['assignment3_minogud2 = src.main:main']
+        }
+    )
+
+setup(**config)

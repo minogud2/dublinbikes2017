@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4- Software Engineering. Authors: Cara Delorey, Darragh Minogue, Tao Li-->
+
+
+<!-- Source for Weather display: http://codepen.io/anon/pen/peGWjz-->
+
+<html lang="en">
+<head>
+    <title>Dublin Bikes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/style.css"/>
+    <script language="JavaScript" type="text/javascript" src="../static/js/jquery-3.2.0.min.js"></script>
+    <script src="../static/js/mapInfo.js" type="text/javascript"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHxpqeoG1jNA4VHBlFeopWuRmFoYTh-ME&callback=initMap">
+    </script>
+
+        <script src="../static/js/chart2.js" type="text/javascript"></script>
+    <script src="../static/js/weatherInfo.js" type="text/javascript"></script>
+    <!-- Adds Weather Icons CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.5/css/weather-icons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    </head>
+<body>
+    <!-- Header Content Area-->
+    <div id="container">
+    <header>        
+    <h1> Dublin Bikes </h1>
+    </header>
+        
+    <div id="primary">
+    <div id="searchPlaceHolder">
+        <h2> &nbsp &nbsp &nbsp &nbsp &nbsp Find a station </h2></div>
+    <div id="map"></div>
+    <div id="displayWeather">
+        <p> <span> <b> Current Weather </b></span></p>
+        <p id="wTemp1">
+        </p>
+        <p id="wTemp2">
+        </p>
+        <p id="wTemp3"> 
+        </p>
+        <p id="wIcon">
+        </p>
+        <p id="wDesc">  
+        </p>
+        </div>
+        <img src="../static/images/jcdecaux.png" class="logo1" style=width:80px;height:35px>
+        <img src="../static/images/2000px-Coca-Cola_Zero_logo.svg.png" class="logo2" style=width:75px;height:35px>
+                <img src="../static/images/dbikeslogo.png" class="logo3" style=width:90px;height:45px>
+        </div>
+
+    <!-- Footer Content Area-->
+    <footer>
+    </footer>
+            </div>
+    
+</body> 
+</html>
