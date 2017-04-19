@@ -1,17 +1,8 @@
-#!/usr/bin/python
-import sys
-import logging
-import rds_config
-import pymysql
-rds_host  = rds_config.db_endpoint
-name = rds_config.db_username
-password = rds_config.db_password
-db_name = rds_config.db_name
-port = 3306
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-try:
-    conn = pymysql.connect(rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-except:
-    logger.error("ERROR: Unexpected error: Could not connect to MySql instance.")
-    sys.exit()
+dict1 = [{"Time":"06:00 - 09:00","avgVac":12.7205882353},{"Time":"09:00 - 12:00","avgVac":24.4621848739},{"Time":"12:00 - 15:00","avgVac":20.1212121212},{"Time":"15:00 - 18:00","avgVac":16.4916666667},{"Time":"18:00 - 21:00","avgVac":22.4158415842},{"Time":"21:00 - 00:00","avgVac":2.1232876712}]
+
+print(dict1[0])
+print(dict1[0]['Time'])
+print(dict1[1]['avgVac'])
+
+print(dict1[0])
+print(dict1[0]['avgVac'])

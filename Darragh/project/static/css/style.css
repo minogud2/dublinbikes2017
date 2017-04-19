@@ -61,8 +61,8 @@ margin : auto;
 
 #primary {
 background-color: darkslategray;
-width : 900px;
-height : 420px;
+width : 930px;
+height : 460px;
 margin-bottom : 20px;
 margin: auto;
 }
@@ -70,7 +70,7 @@ margin: auto;
 #searchPlaceHolder{
     background-color: darkslategray;
     color: white;
-    width: 900px;
+    width: 930px;
     height: 40px;
     vertical-align: middle;
 }
@@ -78,31 +78,26 @@ margin: auto;
 #map {
 display : block;
 float : left;
-width : 900px;
-height : 320px;
+width : 930px;
+height : 370px;
 visibility : visible;
 position: absolute;
 }
 
-span{
-  border-bottom:1px solid;
-  border-bottom-color: darkslategrey;
-}
-
 /* Styling for the info window */ 
-/*
+
 .gm-style-iw {
 width: 800px; 
 min-height: 400px;
 }
-*/
+
 
 .scrollFix {
-    width: 300px;
+    width: 400px;
     line-height: 1.35;
     overflow: hidden;
     white-space: nowrap;
-}
+}   
 
 /* Styling for the weather */ 
 
