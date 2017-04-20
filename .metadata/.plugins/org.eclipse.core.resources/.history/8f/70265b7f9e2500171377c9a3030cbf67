@@ -209,7 +209,6 @@ def make_chartWeekly():
    chdata=[x for x in c.fetchall()]
    df=pd.DataFrame(data=chdata)
    df['avgVacency'] = round(df[2] / (df[3] + df[2]), 2)
-   
    # convert string time to datetime for easy manipulation
    end = datetime.time(0,0,0)
    start = datetime.time(6,0,0)

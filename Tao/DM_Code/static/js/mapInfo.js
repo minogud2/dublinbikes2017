@@ -260,17 +260,19 @@ function initMap() {
         
           var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(53.3498053, -6.260309699999993), 
-          zoom: 13,
+          zoom: 14,
           mapTypeId: google.maps.MapTypeId.ROADMAP
           
           }); //closeing map creation 
         
-           
+//        var bikeLayer = new google.maps.BicyclingLayer();
+//        bikeLayer.setMap(map);
+    
         $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=a5a72d6f6cd1ffef0ce2648b8c852f7945ce058f", null, function(data){
           
             var infowindow = null;
             infowindow = new google.maps.InfoWindow({
-                content: "holding..."
+                content: '<div class="scrollFix">' + "holding..." +'</div>',
             }); // close infowindow ;
             
             var marker, i;
@@ -280,10 +282,13 @@ function initMap() {
                       var stations = data[i];
                       var d = new Date();
                       var y = d.setMinutes(d.getMinutes() -5);
+                      var hours = d.getHours();
+                      var minutes = d.getMinutes()
+                      var ampm = hours >= 12 ? 'pm' : 'am';
                       // console.log(y)
                       
                       var contentString = '<div id="content", class="scrollFix">'+
-                      '<p><b>' + 'Station No: </b>'+ stations.number + '<br><b>Station: </b>'+ stations.address + '</br><b>Last Update: </b>'+d +'</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Free Stands: </b>' + stations.available_bike_stands + '<div id="chartDiv1"></div>' + '<div id="chartDiv2"></div>' +
+                      '<p><b>' + 'Station No: </b>'+ stations.number + '<br><b>Station: </b>'+ stations.address + '</br><b>Last Update: </b>' + hours +':' + minutes + ampm + '</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Empty Bike Stands: </b>' + stations.available_bike_stands + '<div id="chartDiv1"></div>' + '<div id="chartDiv2"></div>' +
                       '</div>';
         
                       var totalAvailable = (stations.available_bikes)/(stations.available_bike_stands);
@@ -416,9 +421,6 @@ function initMap() {
 
  // }
 
-
  function toggleHeatmap() {
       heatmap.setMap(heatmap.getMap() ? null : map);
   } // close toglle 
-
-
