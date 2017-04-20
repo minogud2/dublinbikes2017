@@ -239,29 +239,29 @@ def make_chart():
 #    g.db.close()
 #    return df
 # 
-@app.route('/search', methods=['GET', 'POST'])
-@app.route('/index1', methods=['GET', 'POST'])
-def search():
-    # if request.method == "POST":
-    g.db = dbconnect.connection()
-    c = g.db.cursor()
-    search = request.form['search']
-    sql4_str = sql4.format(addr = search)
-    cur = c.execute(sql4_str) 
-    rows = c.fetchall()
-    stations = {}
-    for eachRow in rows:
-        case = {'key1': eachRow[0], 'key2': eachRow[1], 
-                'key3':eachRow[2], 'key4':eachRow[3], 
-                'key5':eachRow[4],'key6':eachRow[5],
-                'key7':eachRow[6],'key8':eachRow[7],
-                'key9':eachRow[8],'key10':eachRow[9]}
-        stations.update(case)
-    print('connection')
-    c.close()
-    g.db.close()
-    print(stations)
-    return  render_template('index1.html', stations=stations )
+# @app.route('/search', methods=['GET', 'POST'])
+# @app.route('/index1', methods=['GET', 'POST'])
+# def search():
+#     # if request.method == "POST":
+#     g.db = dbconnect.connection()
+#     c = g.db.cursor()
+#     search = request.form['search']
+#     sql4_str = sql4.format(addr = search)
+#     cur = c.execute(sql4_str) 
+#     rows = c.fetchall()
+#     stations = {}
+#     for eachRow in rows:
+#         case = {'key1': eachRow[0], 'key2': eachRow[1], 
+#                 'key3':eachRow[2], 'key4':eachRow[3], 
+#                 'key5':eachRow[4],'key6':eachRow[5],
+#                 'key7':eachRow[6],'key8':eachRow[7],
+#                 'key9':eachRow[8],'key10':eachRow[9]}
+#         stations.update(case)
+#     print('connection')
+#     c.close()
+#     g.db.close()
+#     print(stations)
+#     return  render_template('index1.html', stations=stations )
         
 if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)
