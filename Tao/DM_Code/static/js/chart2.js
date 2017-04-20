@@ -2,14 +2,15 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(makeChart);
 
 function makeChart() { //one function for both charts
-    
+        var maxAxis;
        $.getJSON('http://127.0.0.1:5000/chart', null, function(data) {
-           
+                
                 var arr = [];
                 for (var x in data) {
                    arr.push(parseInt(data[x]['avgVac']))
                 }
-
+                maxAxis = parseInt(data[0]['TotalBikes'])
+                console.log(maxAxis)
                 var dt = new google.visualization.DataTable();
                   dt.addColumn('string', 'Time');  //x-axis
                   dt.addColumn('number', 'Available'); //y-axis, availability
@@ -38,7 +39,10 @@ function makeChart() { //one function for both charts
                     vAxis: {
                     gridlines: { count: 2 },
                     textStyle : {
-                    fontSize: 8 // or the number you want
+                    fontSize: 8 },
+                    viewWindow: {
+                    max: maxAxis,
+                    min:0
                     }}};    
                var chart = new google.visualization.ColumnChart(document.getElementById('chartDiv1'));
                 chart.draw(dt, options1);

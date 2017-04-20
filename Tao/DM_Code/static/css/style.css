@@ -92,8 +92,9 @@ position: absolute;
 
 
 /* Styling for the info window */ 
+
 .scrollFix {
-    width: 315px;
+    width: 270px;
     height: 250px;
     line-height: 1.35;
     overflow: hidden;
@@ -184,12 +185,22 @@ button:hover {
     margin-top: 8px;
     margin-left: 10px;
 }
+
+.ui-autocomplete { 
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.tags{
+    font-size: 10px;
+}
+
 /*Source: http://www.bloggermint.com/2011/06/css3-search-box-inspired-by-apple-com/
 */
 #search input[type="text"] {
     background: url(/static/images/search-white.png) no-repeat 10px 6px #fcfcfc;
     border: 1px solid #d1d1d1;
-    font: bold 12px Arial,Helvetica,Sans-serif;
+    font-size: 10px;
     color: #bebebe;
     width: 150px;
     padding: 6px 15px 6px 35px;
