@@ -310,7 +310,7 @@ def make_chartWeekly():
                   (round(sunInt4['avgVacency'],0)), (round(sunInt5['avgVacency'],0)), (round(sunInt6['avgVacency'],0))]]
     print(weekMean)
         
-    return jsonify(weekMean=weekMean)
+    return weekMean
 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])
