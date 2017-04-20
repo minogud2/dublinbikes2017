@@ -1,45 +1,66 @@
-google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.load('current', {
+    packages: ['corechart', 'bar']
+});
 google.charts.setOnLoadCallback(makeChart);
 
 function makeChart() { //one function for both charts
-    
-       $.getJSON('http://127.0.0.1:5000/chart', null, function(data) {
-           
-                var arr = [];
-                for (var x in data) {
-                   arr.push(String(data[x]['Time'])), 
-                   arr.push(parseInt(data[x]['avgVac']))
+    $.getJSON('http://127.0.0.1:5000/chart', null, function(data) {
+
+        var arr = [];
+        for (var x in data) {
+            arr.push(parseInt(data[x]['avgVac']))
+        }
+        var dt = new google.visualization.DataTable();
+        dt.addColumn('string', 'Time'); //x-axis
+        dt.addColumn('number', 'Available'); //y-axis, availability
+        dt.addRows([
+            ['6am-9am', arr[0]],
+            ['9am-12pm', arr[1]],
+            ['12pm-3pm', arr[2]],
+            ['3pm-6pm', arr[3]],
+            ['6pm-9pm', arr[4]],
+            ['9pm-12am', arr[5]],
+        ]);
+
+        var options1 = {
+            title: 'Popular times',
+            legend: {
+                position: 'none'
+            },
+            colors: ['76A7FA'],
+            width: 360,
+            chartArea: {
+                left: 15,
+                top: 15
+            },
+            height: 140,
+            bar: {
+                groupWidth: "95%"
+            },
+            hAxis: {
+                slantedText: true,
+                textStyle: {
+                    fontSize: 8 // or the number you want
                 }
-
-                var dt = new google.visualization.DataTable();
-                  dt.addColumn('string', 'Time');  //x-axis
-                  dt.addColumn('number', 'avgVac'); //y-axis, availability
-                  dt.addRows([
-                      [arr[0],arr[1]],
-                      [arr[2],arr[3]],
-                      [arr[4],arr[5]],
-                      [arr[6],arr[7]],
-                      [arr[8],arr[9]],
-                      [arr[10],arr[11]],
-                  ]);
-
-               var options1 = {
-                    title: 'Daily Availability',
-                    legend: {position: 'none'},
-                    colors:['76A7FA'],
-                    width: 350,
-                    chartArea:{left:10},
-                    height: 140,
-                    bar: {groupWidth: "95%"},
-                    hAxis: {
-                    textPosition: 'none'},
-                    vAxis: {
-                    textPosition: 'none'}};    
-           
-               var chart = new google.visualization.ColumnChart(document.getElementById('chartDiv1'));
-                chart.draw(dt, options1);
-            })};
-               //second chart
+            },
+            vAxis: {
+                gridlines: {
+                    count: 2
+                },
+                textStyle: {
+                    fontSize: 8
+                },
+                viewWindow: {
+                    max: parseInt(data[0]['TotalBikes']),
+                    min: 0
+                }
+            }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chartDiv1'));
+        chart.draw(dt, options1);
+    })
+};
+//second chart
 //                var dt2 = new google.visualization.DataTable();
 //                    dt2.addColumn('string', 'Last update');
 //                      dt2.addColumn('number', 'Bikes free'); //y-axis, weekly average

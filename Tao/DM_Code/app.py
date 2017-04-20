@@ -10,32 +10,16 @@ import dbconnect
 
 #create app object
 app = Flask(__name__)
-todaysDay = datetime.date.today().strftime("%A") #
-ChartDay = todaysDay[:3] #check ordering here
 
 @app.route("/")
 def index():
     return render_template('index.html')
 
-sql = """SELECT DISTINCT
-    static.num,
-    static.addr,
-    DynamicTest.last_update,
-    DynamicTest.status,
-    static.lat,
-    static.longti,
-    DynamicTest.available_bikes,
-    DynamicTest.available_bike_stands,
-    DynamicTest.bike_stands,
-    DynamicTest.banking
-FROM
-    static,
-    DynamicTest
-WHERE
-    static.num = DynamicTest.num
-ORDER BY DynamicTest.uniqueID DESC
-LIMIT 101;"""
+# Create variable from todays date to pass into the sql query when clicked. 
+todaysDay = datetime.date.today().strftime("%A") #
+ChartDay = todaysDay[:3] #check ordering here
 
+# SQL query to display current weather
 sql1 = """SELECT DISTINCT
     weather.timeStamp,
     weather.weatherID,
@@ -47,6 +31,8 @@ FROM
 ORDER BY uniqueID DESC
 LIMIT 1;"""
   
+# SQL query  to display daily chart information by station id(passed from javascript ajax)
+# chart day information is passed from chartDay variable above into Like parameter.
 sql2 = """SELECT DISTINCT
   static.num,
   DynamicTest.last_update,
@@ -60,7 +46,8 @@ WHERE
   and static.num = '{stationChart}'
   and DynamicTest.last_update LIKE '{}%';
   """
-    
+
+# SQL query for weekly chart information by station id.
 sql3 = """SELECT DISTINCT
   static.num,
   DynamicTest.last_update,
@@ -73,6 +60,8 @@ WHERE
   static.num = DynamicTest.num
   and static.num = '{passMarker}';
   """
+  
+# SQL query for search function. 
 sql4 = """SELECT DISTINCT
     static.num,
     static.addr,
@@ -93,6 +82,8 @@ WHERE
 ORDER BY uniqueID DESC
 LIMIT 1;
     """
+
+# Flask function to display weather. Passes SQL to list and returns output on webpage in json format. 
 @app.route('/weather')
 def get_weather():
     g.db = dbconnect.connection()
@@ -106,20 +97,7 @@ def get_weather():
     g.db.close()
     return jsonify(weather=weather)
 
-@app.route('/stations1')
-@functools.lru_cache(maxsize=128)
-def get_dynamicData():
-    g.db = dbconnect.connection()
-    c = g.db.cursor()
-    cur = c.execute(sql) 
-    rows = c.fetchall()
-    stations = []
-    for eachRow in rows:
-        stations.append(eachRow)
-    c.close()
-    g.db.close()
-    return jsonify(stations=stations)
-
+# Flask function that takes station clicked via ajax request returns output on webpage in json format. 
 @app.route('/selectedStation', methods=['GET', 'POST'])
 def selectedStation():
     if request.method == "POST":
@@ -129,6 +107,7 @@ def selectedStation():
         return jsonify(stationData=stationData)
     return jsonify(stationData=stationData)
 
+# Flask funciton to send
 @app.route('/chart')
 def make_chart():
     g.db = dbconnect.connection()
@@ -136,6 +115,11 @@ def make_chart():
     cur = c.execute(sql2.format(ChartDay, stationChart=stationData))
     chdata=[x for x in c.fetchall()]
     df=pd.DataFrame(data=chdata)
+    
+    # Find max value for the y axis on the graph. Otherwise it just takes average.
+    dfMax = df.iloc[df[3].max()]
+    vAxis = dfMax.ix[3] + dfMax.ix[2]
+
     df['avgVacency'] = round(df[2], 0) # / (df[3] + df[2]), 2)
     # convert string time to datetime for easy manipulation
     end = datetime.time(0,0,0)
@@ -178,7 +162,7 @@ def make_chart():
             df.loc[i, 'interval5'] = 5
         elif df[1][i] > interval5s and df[1][i] < interval5e:
             df.loc[i, 'interval6'] = 6
-
+       
     dfOne = df.loc[df['interval1'] == 1]
     df2 = df.loc[df['interval2'] == 2]
     df3 = df.loc[df['interval3'] == 3]
@@ -193,64 +177,68 @@ def make_chart():
     mean5 = np.mean(df5["avgVacency"])
     mean6 = np.mean(df6["avgVacency"])
 
-    columns = ['Time', 'avgVac']
-    dfFinal = pd.DataFrame([["06:00 - 09:00", mean1], ["09:00 - 12:00", mean2], ["12:00 - 15:00", mean3], ["15:00 - 18:00", mean4], ["18:00 - 21:00", mean5], ["21:00 - 00:00", mean6]], columns=columns)
+    columns = ['Time', 'avgVac', 'TotalBikes']
+    dfFinal = pd.DataFrame([["06:00 - 09:00", mean1, vAxis], ["09:00 - 12:00", mean2, vAxis], 
+                            ["12:00 - 15:00", mean3, vAxis], ["15:00 - 18:00", mean4, vAxis], 
+                            ["18:00 - 21:00", mean5, vAxis], ["21:00 - 00:00", mean6, vAxis]], 
+                           columns=columns)
     df1 = dfFinal.to_json(orient='records') #json string
     c.close()
     g.db.close()
-
     return df1
 
-@app.route('/chartWeek')
-def make_chartWeekly():
-   g.db = dbconnect.connection()
-   c = g.db.cursor()
-   cur = c.execute(sql3.format(passMarker=stationData))
-   chdata=[x for x in c.fetchall()]
-   df=pd.DataFrame(data=chdata)
-   df['avgVacency'] = round(df[2] / (df[3] + df[2]), 2)
-   # convert string time to datetime for easy manipulation
-   end = datetime.time(0,0,0)
-   start = datetime.time(6,0,0)
-   df['day'] = pd.to_datetime(df[1]).dt.strftime("%A")
-   df[1] = pd.to_datetime(df[1]).dt.time
-
-   # create variables for time intervals.
-   interval0s = datetime.time(6,0,0)
-   interval0e = datetime.time(8,59,59)
-   interval1s = datetime.time(9,0,0)
-   interval1e = datetime.time(11,59,59)
-   interval2s = datetime.time(12,0,0)
-   interval2e = datetime.time(14,59,59)
-   interval3s = datetime.time(15,0,0)
-   interval3e = datetime.time(17,59,59)
-   interval4s = datetime.time(18,0,0)
-   interval4e = datetime.time(20,59,59)
-   interval5s = datetime.time(21,0,0)
-   interval5e = datetime.time(23,59,59)
-   
-   df['interval'] = 0
-   for i, row in df.iterrows():
-       if df[1][i] > end and df[1][i] < start:
-           df.drop(i, inplace=True)
-       elif df[1][i] > interval0s and df[1][i] < interval0e:
-           df.loc[i, 'interval'] = 1
-       elif df[1][i] > interval1s and df[1][i] < interval1e:
-           df.loc[i, 'interval'] = 2
-       elif df[1][i] > interval2s and df[1][i] < interval2e:
-           df.loc[i, 'interval'] = 3
-       elif df[1][i] > interval3s and df[1][i] < interval3e:
-           df.loc[i, 'interval'] = 4
-       elif df[1][i] > interval4s and df[1][i] < interval4e:
-           df.loc[i, 'interval'] = 5
-       elif df[1][i] > interval5s and df[1][i] < interval5e:
-           df.loc[i, 'interval'] = 6
-  
-   df = df.to_json(orient='records')
-   c.close()
-   g.db.close()
-   return df
-
+# @app.route('/chartWeek')
+# def make_chartWeekly():
+#    g.db = dbconnect.connection()
+#    c = g.db.cursor()
+#    cur = c.execute(sql3.format(passMarker=stationData))
+#    chdata=[x for x in c.fetchall()]
+#    df=pd.DataFrame(data=chdata)
+#    df['avgVacency'] = round(df[2] / (df[3] + df[2]), 2)
+#    
+#    # convert string time to datetime for easy manipulation
+#    end = datetime.time(0,0,0)
+#    start = datetime.time(6,0,0)
+#    df['day'] = pd.to_datetime(df[1]).dt.strftime("%A")
+#    df[1] = pd.to_datetime(df[1]).dt.time
+# 
+#    # create variables for time intervals.
+#    interval0s = datetime.time(6,0,0)
+#    interval0e = datetime.time(8,59,59)
+#    interval1s = datetime.time(9,0,0)
+#    interval1e = datetime.time(11,59,59)
+#    interval2s = datetime.time(12,0,0)
+#    interval2e = datetime.time(14,59,59)
+#    interval3s = datetime.time(15,0,0)
+#    interval3e = datetime.time(17,59,59)
+#    interval4s = datetime.time(18,0,0)
+#    interval4e = datetime.time(20,59,59)
+#    interval5s = datetime.time(21,0,0)
+#    interval5e = datetime.time(23,59,59)
+#    
+#    df['interval'] = 0
+#    for i, row in df.iterrows():
+#        if df[1][i] > end and df[1][i] < start:
+#            df.drop(i, inplace=True)
+#        elif df[1][i] > interval0s and df[1][i] < interval0e:
+#            df.loc[i, 'interval'] = 1
+#        elif df[1][i] > interval1s and df[1][i] < interval1e:
+#            df.loc[i, 'interval'] = 2
+#        elif df[1][i] > interval2s and df[1][i] < interval2e:
+#            df.loc[i, 'interval'] = 3
+#        elif df[1][i] > interval3s and df[1][i] < interval3e:
+#            df.loc[i, 'interval'] = 4
+#        elif df[1][i] > interval4s and df[1][i] < interval4e:
+#            df.loc[i, 'interval'] = 5
+#        elif df[1][i] > interval5s and df[1][i] < interval5e:
+#            df.loc[i, 'interval'] = 6
+# 
+#    df = df.to_json(orient='records')
+# 
+#    c.close()
+#    g.db.close()
+#    return df
+# 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])
 def search():
@@ -263,13 +251,16 @@ def search():
     rows = c.fetchall()
     stations = {}
     for eachRow in rows:
-        case = {'key1': eachRow[0], 'key2': eachRow[1], 'key3':eachRow[2], 'key4':eachRow[3], 'key5':eachRow[4],'key6':eachRow[5],'key7':eachRow[6],'key8':eachRow[7],'key9':eachRow[8],'key10':eachRow[9]}
+        case = {'key1': eachRow[0], 'key2': eachRow[1], 
+                'key3':eachRow[2], 'key4':eachRow[3], 
+                'key5':eachRow[4],'key6':eachRow[5],
+                'key7':eachRow[6],'key8':eachRow[7],
+                'key9':eachRow[8],'key10':eachRow[9]}
         stations.update(case)
     print('connection')
     c.close()
     g.db.close()
     print(stations)
-
     return  render_template('index1.html', stations=stations )
         
 if __name__ == '__main__':
