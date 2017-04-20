@@ -248,8 +248,8 @@ def make_chartWeekly():
     monInt2 = df[(df['Day'] == 'Monday') & (df['interval2'] == 2)].mean()
     monInt3 = df[(df['Day'] == 'Monday') & (df['interval3'] == 3)].mean()
     monInt4 = df[(df['Day'] == 'Monday') & (df['interval4'] == 4)].mean()
-    monInt5 = df[(df['Day'] == 'Monday') & (df['interval5'] == 5)].mean()
-    monInt6 = df[(df['Day'] == 'Monday') & (df['interval6'] == 6)].mean()
+    tueInt5 = df[(df['Day'] == 'Monday') & (df['interval5'] == 5)].mean()
+    tueInt6 = df[(df['Day'] == 'Monday') & (df['interval6'] == 6)].mean()
 
     tueInt1 = df[(df['Day'] == 'Tuesday') & (df['interval1'] == 1)].mean()
     tueInt2 = df[(df['Day'] == 'Tuesday') & (df['interval2'] == 2)].mean()
@@ -310,7 +310,7 @@ def make_chartWeekly():
                   (round(sunInt4['avgVacency'],0)), (round(sunInt5['avgVacency'],0)), (round(sunInt6['avgVacency'],0))]]
     print(weekMean)
         
-    return jsonify(weekMean=weekMean)
+    return df
 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])

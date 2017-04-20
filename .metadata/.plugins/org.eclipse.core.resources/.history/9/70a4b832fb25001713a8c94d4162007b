@@ -245,72 +245,9 @@ def make_chartWeekly():
        
 #     x = df.groupby.(['ShippingTime_minHours', 'SellerId']).count()
     monInt1 = df[(df['Day'] == 'Monday') & (df['interval1'] == 1)].mean()
-    monInt2 = df[(df['Day'] == 'Monday') & (df['interval2'] == 2)].mean()
-    monInt3 = df[(df['Day'] == 'Monday') & (df['interval3'] == 3)].mean()
-    monInt4 = df[(df['Day'] == 'Monday') & (df['interval4'] == 4)].mean()
-    monInt5 = df[(df['Day'] == 'Monday') & (df['interval5'] == 5)].mean()
-    monInt6 = df[(df['Day'] == 'Monday') & (df['interval6'] == 6)].mean()
-
-    tueInt1 = df[(df['Day'] == 'Tuesday') & (df['interval1'] == 1)].mean()
-    tueInt2 = df[(df['Day'] == 'Tuesday') & (df['interval2'] == 2)].mean()
-    tueInt3 = df[(df['Day'] == 'Tuesday') & (df['interval3'] == 3)].mean()
-    tueInt4 = df[(df['Day'] == 'Tuesday') & (df['interval4'] == 4)].mean()
-    tueInt5 = df[(df['Day'] == 'Tuesday') & (df['interval5'] == 5)].mean()
-    tueInt6 = df[(df['Day'] == 'Tuesday') & (df['interval6'] == 6)].mean()
-    
-    wedInt1 = df[(df['Day'] == 'Wednesday') & (df['interval1'] == 1)].mean()
-    wedInt2 = df[(df['Day'] == 'Wednesday') & (df['interval2'] == 2)].mean()
-    wedInt3 = df[(df['Day'] == 'Wednesday') & (df['interval3'] == 3)].mean()
-    wedInt4 = df[(df['Day'] == 'Wednesday') & (df['interval4'] == 4)].mean()
-    wedInt5 = df[(df['Day'] == 'Wednesday') & (df['interval5'] == 5)].mean()
-    wedInt6 = df[(df['Day'] == 'Wednesday') & (df['interval6'] == 6)].mean()
-    
-    thuInt1 = df[(df['Day'] == 'Thursday') & (df['interval1'] == 1)].mean()
-    thuInt2 = df[(df['Day'] == 'Thursday') & (df['interval2'] == 2)].mean()
-    thuInt3 = df[(df['Day'] == 'Thursday') & (df['interval3'] == 3)].mean()
-    thuInt4 = df[(df['Day'] == 'Thursday') & (df['interval4'] == 4)].mean()
-    thuInt5 = df[(df['Day'] == 'Thursday') & (df['interval5'] == 5)].mean()
-    thuInt6 = df[(df['Day'] == 'Thursday') & (df['interval6'] == 6)].mean()
-    
-    friInt1 = df[(df['Day'] == 'Friday') & (df['interval1'] == 1)].mean()
-    friInt2 = df[(df['Day'] == 'Friday') & (df['interval2'] == 2)].mean()
-    friInt3 = df[(df['Day'] == 'Friday') & (df['interval3'] == 3)].mean()
-    friInt4 = df[(df['Day'] == 'Friday') & (df['interval4'] == 4)].mean()
-    friInt5 = df[(df['Day'] == 'Friday') & (df['interval5'] == 5)].mean()
-    friInt6 = df[(df['Day'] == 'Friday') & (df['interval6'] == 6)].mean()
-    
-    satInt1 = df[(df['Day'] == 'Saturday') & (df['interval1'] == 1)].mean()
-    satInt2 = df[(df['Day'] == 'Saturday') & (df['interval2'] == 2)].mean()
-    satInt3 = df[(df['Day'] == 'Saturday') & (df['interval3'] == 3)].mean()
-    satInt4 = df[(df['Day'] == 'Saturday') & (df['interval4'] == 4)].mean()
-    satInt5 = df[(df['Day'] == 'Saturday') & (df['interval5'] == 5)].mean()
-    satInt6 = df[(df['Day'] == 'Saturday') & (df['interval6'] == 6)].mean()
-    
-    sunInt1 = df[(df['Day'] == 'Sunday') & (df['interval1'] == 1)].mean()
-    sunInt2 = df[(df['Day'] == 'Sunday') & (df['interval2'] == 2)].mean()
-    sunInt3 = df[(df['Day'] == 'Sunday') & (df['interval3'] == 3)].mean()
-    sunInt4 = df[(df['Day'] == 'Sunday') & (df['interval4'] == 4)].mean()
-    sunInt5 = df[(df['Day'] == 'Sunday') & (df['interval5'] == 5)].mean()
-    sunInt6 = df[(df['Day'] == 'Sunday') & (df['interval6'] == 6)].mean()
-    
-    
-    weekMean = [[(round(monInt1['avgVacency'],0)), (round(monInt2['avgVacency'],0)), (round(monInt3['avgVacency'],0)),
-                  (round(monInt4['avgVacency'],0)), (round(monInt5['avgVacency'],0)), (round(monInt6['avgVacency'],0))],
-                [(round(tueInt1['avgVacency'],0)), (round(tueInt2['avgVacency'],0)), (round(tueInt3['avgVacency'],0)),
-                  (round(tueInt4['avgVacency'],0)), (round(tueInt5['avgVacency'],0)), (round(tueInt6['avgVacency'],0))],
-                [(round(wedInt1['avgVacency'],0)), (round(wedInt2['avgVacency'],0)), (round(wedInt3['avgVacency'],0)),
-                  (round(wedInt4['avgVacency'],0)), (round(wedInt5['avgVacency'],0)), (round(wedInt6['avgVacency'],0))],
-                [(round(thuInt1['avgVacency'],0)), (round(thuInt2['avgVacency'],0)), (round(thuInt3['avgVacency'],0)),
-                  (round(thuInt4['avgVacency'],0)), (round(thuInt5['avgVacency'],0)), (round(thuInt6['avgVacency'],0))],
-                [(round(friInt1['avgVacency'],0)), (round(friInt2['avgVacency'],0)), (round(friInt3['avgVacency'],0)),
-                  (round(friInt4['avgVacency'],0)), (round(friInt5['avgVacency'],0)), (round(friInt6['avgVacency'],0))],
-                [(round(satInt1['avgVacency'],0)), (round(satInt2['avgVacency'],0)), (round(satInt3['avgVacency'],0)),
-                  (round(satInt4['avgVacency'],0)), (round(satInt5['avgVacency'],0)), (round(satInt6['avgVacency'],0))],
-                [(round(sunInt1['avgVacency'],0)), (round(sunInt2['avgVacency'],0)), (round(sunInt3['avgVacency'],0)),
-                  (round(sunInt4['avgVacency'],0)), (round(sunInt5['avgVacency'],0)), (round(sunInt6['avgVacency'],0))]]
-    print(weekMean)
+    print(monInt1)
         
-    return jsonify(weekMean=weekMean)
+    return df
 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])
