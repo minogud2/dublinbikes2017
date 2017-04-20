@@ -8,7 +8,7 @@ import sys
 from flask_mysqldb import MySQLdb
 import dbconnect
 
-#create app object
+#create appl object
 app = Flask(__name__)
 todaysDay = datetime.date.today().strftime("%A") #
 ChartDay = todaysDay[:3] #check ordering here
@@ -129,6 +129,7 @@ def selectedStation():
         return jsonify(stationData=stationData)
     return jsonify(stationData=stationData)
 
+
 @app.route('/chart')
 def make_chart():
     g.db = dbconnect.connection()
@@ -198,7 +199,7 @@ def make_chart():
     df1 = dfFinal.to_json(orient='records') #json string
     c.close()
     g.db.close()
-
+    #return matrix #=matrix)
     return df1
 
 @app.route('/chartWeek')
@@ -250,6 +251,7 @@ def make_chartWeekly():
    c.close()
    g.db.close()
    return df
+   
 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])
@@ -272,5 +274,16 @@ def search():
 
     return  render_template('index1.html', stations=stations )
         
+@app.route('/stations_selected/<int:station_id>')
+def show_post(post_id):
+    # show the post with the given id, the id is an integer
+    return 'Post %d' % post_id    
+
+@app.route('/index1',methods=['GET', 'POST']) 
+def index1():
+    
+    
+    return render_template('index1.html')
+
 if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)

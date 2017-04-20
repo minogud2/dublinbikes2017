@@ -10,10 +10,7 @@ function makeChart() { //one function for both charts
                    arr.push(String(data[x]['Time'])), 
                    arr.push(parseInt(data[x]['avgVac']))
                 }
-                console.log(arr[1])
-                console.log(typeof(arr[0]))
-                console.log(typeof(arr[1]))
-                
+
                 var dt = new google.visualization.DataTable();
                   dt.addColumn('string', 'Time');  //x-axis
                   dt.addColumn('number', 'avgVac'); //y-axis, availability
@@ -29,6 +26,11 @@ function makeChart() { //one function for both charts
                var options1 = {
                     title: 'Daily Availability',
                     legend: {position: 'none'},
+                    colors:['76A7FA'],
+                    width: 350,
+                    chartArea:{left:10},
+                    height: 140,
+                    bar: {groupWidth: "95%"},
                     hAxis: {
                     textPosition: 'none'},
                     vAxis: {

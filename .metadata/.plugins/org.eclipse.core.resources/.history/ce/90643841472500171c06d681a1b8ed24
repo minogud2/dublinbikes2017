@@ -198,7 +198,7 @@ def make_chart():
     df1 = dfFinal.to_json(orient='records') #json string
     c.close()
     g.db.close()
-
+    #return matrix #=matrix)
     return df1
 
 @app.route('/chartWeek')
@@ -250,6 +250,7 @@ def make_chartWeekly():
    c.close()
    g.db.close()
    return df
+   
 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])

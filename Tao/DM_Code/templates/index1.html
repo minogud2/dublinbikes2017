@@ -292,8 +292,7 @@
           zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        
-            
+    
             var locations = {{ stations|tojson }};
             console.log(locations)
             var infowindow = null;
@@ -388,7 +387,7 @@
         <div> <a href="/">Home</a> </div>
 
         <div class="search">
-          <form action="/index1" method=post>
+          <form action="/index1" method=post id='search'>
               <input type=text name=search value="{{ request.form.search}}"></br>
               <div class="actions"><input type=submit value="Search"></div>
           </form>
