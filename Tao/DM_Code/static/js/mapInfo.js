@@ -268,7 +268,6 @@ function initMap() {
            
         $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=a5a72d6f6cd1ffef0ce2648b8c852f7945ce058f", null, function(data){
           
-            
             var infowindow = null;
             infowindow = new google.maps.InfoWindow({
                 content: "holding..."
@@ -279,14 +278,9 @@ function initMap() {
             for (var i = 0; i < data.length; i++) {  
                       
                       var stations = data[i];
-
                       var d = new Date();
-                      
                       var y = d.setMinutes(d.getMinutes() -5);
                       // console.log(y)
-                      
-                      
-                      
                       
                       var contentString = '<div id="content", class="scrollFix">'+
                       '<p><b>' + 'Station No: </b>'+ stations.number + '<br><b>Station: </b>'+ stations.address + '</br><b>Last Update: </b>'+d +'</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Free Stands: </b>' + stations.available_bike_stands + '<div id="chartDiv1"></div>' + '<div id="chartDiv2"></div>' +

@@ -250,6 +250,7 @@ def make_chartWeekly():
    c.close()
    g.db.close()
    return df
+   
 
 @app.route('/search', methods=['GET', 'POST'])
 @app.route('/index1', methods=['GET', 'POST'])
