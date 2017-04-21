@@ -1,0 +1,225 @@
+/* -- <!-- Assignment 4- Software Engineering. Authors: Cara Delorey, Darragh Minogue, Tao Li-->
+-- */
+
+/* General site styling */
+
+body {
+width : 100%;
+height : 100%;
+background-image : url(../images/db1.jpg);
+background-repeat : no-repeat;
+background-size : cover;
+    overflow-x: hidden;
+}
+
+header {
+    margin-bottom: 5px;
+}
+
+footer {
+color : white;
+}
+
+h1 {
+color : white;
+font-size : 50pt;
+    margin-top: 0px;
+    margin-bottom: 5px;
+text-align : center;
+vertical-align : top;
+font-family : 'Pacifico', cursive;
+}
+
+h2{
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    font-size: 18px;
+}
+.logo1{
+    position: absolute;
+    bottom: 10px;
+    margin-left: 5px;
+}
+.logo4{
+    position: absolute;
+    bottom: 15px;
+    right: 150px;
+}
+
+.logo3{
+    position: absolute;
+    bottom: 10px;
+    right: 375px;
+}
+.logo2{
+    position: absolute;
+    bottom: 15px;
+    right: 50px;
+}
+
+#container {
+width : 1000px;
+position : relative;
+margin : auto;
+}
+
+#primary {
+background-color: darkslategray;
+width : 930px;
+height : 470px;
+margin-bottom : 20px;
+margin: auto;
+}
+
+#searchPlaceHolder{
+    background-color: darkslategray;
+    color: white;
+    width: 930px;
+    height: 40px;
+    vertical-align: middle;
+    display: flex;
+}
+
+#map {
+display : block;
+float : left;
+width : 930px;
+height : 370px;
+visibility : visible;
+position: absolute;
+}
+
+
+/* Styling for the info window */ 
+
+.scrollFix {
+    width: 320px;
+    height: 250px;
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Styling for the weather */ 
+
+#displayWeather{
+position: relative;
+float: right;
+width : 120px;
+height : 140px;
+text-align: center;
+background: rgba(255, 255, 255, 0.9);
+color: slategrey;
+font-family: 'Dosis', sans-serif;
+border-top: 5px;
+}
+
+#wTemp1 {
+  font-size: 20px !important;
+    text-align: center;
+    display : inline-block;
+    margin-top: 0;
+}
+
+#wTemp2 {
+  font-size: 20px;
+    display : inline;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+#wTemp3 {
+  font-size: 20px;
+  display : inline-block; 
+  font-weight: bold;
+  margin-top: 0;
+
+}
+#wIcon {
+    font-size: 30px;
+    display : block;   
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#wDesc {
+  font-size: 15px;
+  display : inline-block;   
+    overflow: hidden;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+   }
+
+#floating-panel {
+        left: 103px;
+        background: rgba(255, 255, 255, 0.9);
+        height: 30px;
+        width:60px;
+        position: relative;
+        top: 10px;
+        border: none;
+        z-index: 5;
+        -moz-box-shadow: 0 0 3px #ccc;
+        -webkit-box-shadow: 0 0 3px #ccc;
+        box-shadow: 0 0 3px #ccc;
+        text-align: center;
+      }
+
+.button{
+    height: 29px;
+    width:60px; 
+    padding: 0;
+    font: 11px Arial,Helvetica,Sans-serif;
+    background: rgba(255, 255, 255, 0.9);
+    color: #595959;
+    border: none;
+    margin-bottom: 50px;
+}
+
+button:hover {
+  box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+#search {
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.ui-autocomplete { 
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.tags{
+    font-size: 10px;
+}
+
+/*Source: http://www.bloggermint.com/2011/06/css3-search-box-inspired-by-apple-com/
+*/
+#search input[type="text"] {
+    background: url(/static/images/search-white.png) no-repeat 10px 6px #fcfcfc;
+    border: 1px solid #d1d1d1;
+    font-size: 10px;
+    color: #bebebe;
+    width: 150px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    }
+
+#search input[type="text"]:focus {
+    width: 200px;
+    width: 200px;
+    outline:none; 
+    box-shadow:none;
+    }

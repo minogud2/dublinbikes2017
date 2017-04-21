@@ -2,24 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="stations" key="selection"/>
+		<item value="sat" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="stations"/>
-			<item value="functool"/>
-			<item value="a"/>
+			<item value="fri"/>
+			<item value="Friday"/>
+			<item value="wed"/>
+			<item value="Wednesday"/>
+			<item value="thunesday"/>
+			<item value="    wedInt1 = df[(df[&apos;Day&apos;] == &apos;Wednesday&apos;) &amp; (df[&apos;interval1&apos;] == 1)].mean()"/>
+			<item value="Monday"/>
+			<item value="tue"/>
 		</list>
 		<list key="replacehistory">
+			<item value="sat"/>
+			<item value="sun"/>
+			<item value="Sunday"/>
+			<item value="Saturday"/>
+			<item value="fri"/>
+			<item value="Friday"/>
+			<item value="Thursday"/>
+			<item value="thu"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="385" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="523" key="DIALOG_HEIGHT"/>
-		<item value="779" key="DIALOG_X_ORIGIN"/>
-		<item value="180" key="DIALOG_Y_ORIGIN"/>
+		<item value="981" key="DIALOG_X_ORIGIN"/>
+		<item value="258" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

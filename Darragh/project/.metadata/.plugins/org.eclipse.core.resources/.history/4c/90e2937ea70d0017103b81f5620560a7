@@ -1,0 +1,26 @@
+'''
+Created on 20 Mar 2017
+
+@author: minogud2
+'''
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return "hello World"
+
+def get_db():
+    """Opens a new database connection if there is none yet for the
+    current application context.
+    """
+    if not hasattr(g, 'db_Dataset.db'):
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
+
+if __name__ == "__main__":
+    app.run()
+    
+# if the app name is run directly, it will be assigned the value of main. If main, run it.

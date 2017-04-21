@@ -1,0 +1,17 @@
+'''
+Created on 26 Mar 2017
+
+@author: minogud2
+'''
+import sqlite3 as lt
+
+def data_Entry():
+    c.execute("INSERT INTO ")
+
+if __name__ == '__main__':
+    try:
+        con = lt.connect('dublin_BikesRDB.db')
+        cur = con.cursor()
+    finally:
+        cur.close()
+        con.close()
