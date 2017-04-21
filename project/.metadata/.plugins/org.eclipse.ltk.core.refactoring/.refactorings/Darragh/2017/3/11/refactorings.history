@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Darragh/tests/static_dublin.json&apos; to &apos;test_json.json&apos;" description="Rename resource &apos;static_dublin.json&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="tests/static_dublin.json" name="test_json.json" stamp="1489480978692" updateReferences="true"/>
-</session>
