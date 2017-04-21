@@ -1,0 +1,5 @@
+import json
+from pprint import pprint
+with open('trello.json') as json_data:
+    d = json.loads(json_data)
+    pprint(d)

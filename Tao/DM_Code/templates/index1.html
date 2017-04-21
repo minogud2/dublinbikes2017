@@ -37,7 +37,7 @@
         </header>
 
         <script type="text/javascript">
-    var locations = {{ stations|tojson }};
+    var locations = {{ stations|tojson }}; // I decide to import my dictionary for a searched station infomation as a golable variable as i want to use its location as center for generateing map ; 
     
     function initMap1() {     
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -45,7 +45,8 @@
           zoom: 16,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-         var bikeLayer = new google.maps.BicyclingLayer();
+
+         var bikeLayer = new google.maps.BicyclingLayer(); // give the  map a new layer (theme)
             bikeLayer.setMap(map);
             
             
@@ -53,20 +54,22 @@
             var infowindow = null;
             infowindow = new google.maps.InfoWindow({
                 content: '<div class="scrollFix">' + "holding..." + '</div>',
-            });
+              
+            });// initialise inforwindow and give it some structure and css style;
             var marker, i ;
         
             var d = new Date();
             var y = d.setMinutes(d.getMinutes() - 5);
             var hours = d.getHours();
-            var minutes = d.getMinutes()
-            var ampm = hours >= 12 ? 'pm' : 'am';
+            var minutes = d.getMinutes() 
+            var ampm = hours >= 12 ? 'pm' : 'am'; // we want to import current time and display it only with hour and minutes minus 5(mins)
 
             var contentString = '<div id="content", class="scrollFix">' +
                 '<p><b>' + 'Station No: </b>' +  locations.key1 + '<br><b>Station: </b>' + locations.key2 + '</br><b>Last Update: </b>' + hours + ':' + minutes + ampm + '</br><b>Available bikes: </b>' + locations.key7 + '<br><b>Empty Bike Stands: </b>' + locations.key8+ '<div id="chartDiv1"></div>' + '<div id="chartDiv2"></div>' +
-                '</div>';
+                '</div>';  //this where we populate the the content string for inforwindow ;
 
-            var totalAvailable = locations.key7/locations.key8;
+            var totalAvailable = locations.key7/locations.key8; // we want to user this to decide which bike icon to use ;
+
             console.log(totalAvailable);
                 var newMarker;
             
@@ -103,23 +106,15 @@
                 info: contentString,
                 icon:newMarker
           }); 
-             
-            
-            // infowindow.open(map, newMarkers[i]);
-            // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            //     return function() {
-            //       // infowindow.setContent(contentString);
-                  
-            //       infowindow.setContent(this.info);
-            //       infowindow.open(map, this);
-            //     }
-            //   })(marker, i));
-            
+
+           // generate makers, define some extra properties of maker such as , station num and icon ;
+
             var clickStation;
 
             // infowindow.open(map, newMarkers[i]); // make inforwin
 
-            google.maps.event.addListener(marker, 'click', (function(marker) {
+            google.maps.event.addListener(marker, 'click', (function(marker) {   // this our first google marker click event , it displays content string we defined earlier.
+
                 return function() {
                     // infowindow.setContent(contentString);
                     infowindow.setContent(this.info);
@@ -127,7 +122,7 @@
                     clickedStation = this.stationNum;
                     console.log(clickedStation)
                     // select_station(clickStation);
-                    $.ajax({
+                    $.ajax({   // we use this to send station num from js to flask directly , in order to perform some sql query with keyarguments ('stationsnum') in json.string format .
                         type: 'POST',
                         url: "/selectedStation",
                         contentType: 'application/json;charset=UTF-8',
@@ -139,19 +134,17 @@
                 } // close function
 
             })(marker)); // close maker click event 
+      
+            google.maps.event.addDomListener(marker, 'click', (function(marker) {    // this is our second click event , it shows our chart we generate from another JS file. 
 
-
-            google.maps.event.addDomListener(marker, 'click', (function(marker) {
                 return function() {
                     makeChart(this); //buffer
                 } // close function 
             })(marker)); // close another event 
     }
   
-
-
-
-$(function() {
+$(function() {         // this function, we generate a array full of station name , and use it to perform auto complete for my station search function;
+                        
     var availableTags = [];
     $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=a5a72d6f6cd1ffef0ce2648b8c852f7945ce058f", null, function(data) {
         for (var i = 0; i < data.length; i++) {

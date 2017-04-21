@@ -2,8 +2,8 @@ $(document).ready(function() {
     initMap();
 });
 
-var map;
-var heatmap;
+var map; // define a map as a gloable varibae to sue with different functions 
+var heatmap; // declare a heatmap gloable variabe to be sued for toggle function
 
 function initMap() {
 
@@ -18,7 +18,7 @@ function initMap() {
     bikeLayer.setMap(map);
 
     $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=a5a72d6f6cd1ffef0ce2648b8c852f7945ce058f", null, function(data) {
-
+        // we decide to use live api to get most updated info of the dynamic data , to produce maker and inforwindo .
         var infowindow = null;
         infowindow = new google.maps.InfoWindow({
             content: '<div class="scrollFix">' + "holding..." + '</div>',
@@ -35,14 +35,14 @@ function initMap() {
             var minutes = d.getMinutes()
             var ampm = hours >= 12 ? 'pm' : 'am';
             // console.log(y)
-
+            // sue current time for last update in the from HH/MM mins 5 mins 
             var contentString = '<div id="content", class="scrollFix">' +
                 '<p><b>' + 'Station No: </b>' + stations.number + '<br><b>Station: </b>' + stations.address + '</br><b>Last Update: </b>' + hours + ':' + minutes + ampm + '</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Empty Bike Stands: </b>' + stations.available_bike_stands + '<div id="chartDiv1"></div>' + '<div id="chartDiv2"></div>' +
                 '</div>';
-
+                // pupulate the content string for inforwindow 
             var totalAvailable = (stations.available_bikes) / (stations.available_bike_stands);
             var newMarker;
-
+            //this nested if and else are decide for switching icon based on how busy the station is 
             if (totalAvailable == 0) {
                 newMarker = '../static/images/markers/icon0.png';
             } else if (totalAvailable > 0 && totalAvailable <= 0.1) {
@@ -68,7 +68,7 @@ function initMap() {
             } else {
                 newMarker = '../static/images/markers/icon10.png'; // url
             }
-
+            //defined maker here 
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(stations.position.lat, stations.position.lng),
                 map: map,
@@ -89,6 +89,7 @@ function initMap() {
                     infowindow.open(map, this);
                     clickedStation = this.stationNum;
                     // select_station(clickStation);
+                    // this ajax funciton is to grab a station num and send it to flask to be used as a query key.
                     $.ajax({
                         type: 'POST',
                         url: "/selectedStation",
@@ -102,7 +103,7 @@ function initMap() {
 
             })(marker, i)); // close maker click event 
 
-
+            // this is event function to display chart we generated from other js file. 
             google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
                 return function() {
                     makeChart(this); //buffer
@@ -111,14 +112,14 @@ function initMap() {
 
         } //close loop
     }); //close get json 
-
+    
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: getdata(),
         map: map,
         radius: 10
     });
 } // close init_map function
-
+//this funciton is to use switch on and off the heatmap ;
 function toggleHeatmap() {
     heatmap.setMap(heatmap.getMap() ? null : map);
 } // close toglle 
@@ -140,7 +141,8 @@ function getdata() {
 
     return heatmapData;
 }
-
+// this function is for auto complete for my search station function, it use library  -- jquery UI, i populated array availableTaps with station names; 
+// from live data.
 $(function() {
     var availableTags = [];
     $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=a5a72d6f6cd1ffef0ce2648b8c852f7945ce058f", null, function(data) {

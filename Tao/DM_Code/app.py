@@ -311,8 +311,9 @@ def make_chartWeekly():
     print(weekMean)
         
     return jsonify(weekMean=weekMean)
+# this is the search functiopn we build in , we get key works form html serach input, use it as a argument for sql to ask for data. 
 
-@app.route('/search', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST']) # we have two route attch to this function as one is for home page to index1, one is for search with index1 html
 @app.route('/index1', methods=['GET', 'POST'])
 def search():
     # if request.method == "POST":
@@ -322,7 +323,7 @@ def search():
     sql4_str = sql4.format(addr = search)
     cur = c.execute(sql4_str) 
     rows = c.fetchall()
-    stations = {}
+    stations = {} # i created  a local dictionary to store the information from sql, and then pass it to my js to precess and use. 
     for eachRow in rows:
         case = {'key1': eachRow[0], 'key2': eachRow[1], 
                 'key3':eachRow[2], 'key4':eachRow[3], 

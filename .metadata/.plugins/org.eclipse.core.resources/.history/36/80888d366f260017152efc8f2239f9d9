@@ -1,0 +1,10 @@
+import json
+from pprint import pprint
+import csv
+
+with open('trello.json') as json_data:
+    d = json.load(json_data)
+    pprint(d)
+    
+    var json2xls = require('json2xls');
+    var xls = json2xls(json);
