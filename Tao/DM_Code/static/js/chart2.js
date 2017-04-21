@@ -29,12 +29,12 @@ function makeChart() { //one function for both charts
                 position: 'none'
             },
             colors: ['76A7FA'],
-            width: 360,
+            width: 340,
             chartArea: {
                 left: 15,
                 top: 15
             },
-            height: 140,
+            height: 120,
             bar: {
                 groupWidth: "95%"
             },
@@ -62,17 +62,13 @@ function makeChart() { //one function for both charts
     })
 };
 
-//var TotalBikes = parseInt(data[0]['TotalBikes']);
+
 function makeChartW() { //lineChart
         $.getJSON('http://127.0.0.1:5000/chartWeek', null, function(data) {
             if ('weekMean' in data) {
               var wJ = data.weekMean;
             }
-               //second chart
-//               console.log("HELLO", wJ)
-//               console.log(wJ[0])
-//               console.log(wJ[0][2])
-//               console.log(wJ[1][1])
+
                var dt2 = new google.visualization.DataTable();
                   dt2.addColumn('string', 'Time');  //x-axis
                   dt2.addColumn('number', 'Mon'); //y-axis, availability
@@ -92,20 +88,22 @@ function makeChartW() { //lineChart
                     ]);
                var options2 = {
                 title: 'Weekly Trend',
+                colors: ['#d53e4f', '#fc8d59','#fee08b','#ffffbf', '#e6f598', '#99d594', '#3288bd'],
                 legend: {
-                    position: 'none'
+                    textStyle: {
+                        fontSize: 7 // or the number you want
+                    }
                 },
-                //colors: ['76A7FA'],
-                width: 360,
+                   
+                width: 480,
                 chartArea: {
                     left: 15,
                     top: 15
                 },
-                height: 140,
+                height: 120,
                 seriesType: 'bars',
-                series: {6: {type: 'line'}},
                 bar: {
-                    groupWidth: "95%"
+                    groupWidth: "85%"
                 },
                 hAxis: {
                     slantedText: true,
@@ -129,4 +127,3 @@ function makeChartW() { //lineChart
                var chart2 = new google.visualization.ComboChart(document.getElementById('chartDiv2'));
                 chart2.draw(dt2, options2);
                 })};
-

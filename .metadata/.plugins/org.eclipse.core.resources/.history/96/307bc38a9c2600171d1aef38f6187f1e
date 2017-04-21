@@ -154,7 +154,7 @@ def make_chart():
             df.loc[i, 'interval'] = 5
         elif df[1][i] > interval5s and df[1][i] < interval5e:
             df.loc[i, 'interval'] = 6
-
+    # print(df)
     dfOne = df.loc[df['interval'] == 1]
     df2 = df.loc[df['interval'] == 2]
     df3 = df.loc[df['interval'] == 3]
@@ -162,7 +162,8 @@ def make_chart():
     df5 = df.loc[df['interval'] == 5]
     df6 = df.loc[df['interval'] == 6]  # is this getting all values?
     dfTest = df[df['interval'] == 1]
-
+    # dfTest['mean'] = df[df.loc[df['interval'] == 1]].mean()
+    # print("TEST /n", dfTest)
     mean1 = np.mean(dfOne["avgVacency"]) # .round
     mean2 = np.mean(df2["avgVacency"])
     mean3 = np.mean(df3["avgVacency"])

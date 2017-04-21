@@ -37,8 +37,10 @@ function initMap() {
             // console.log(y)
             // sue current time for last update in the from HH/MM mins 5 mins 
             var contentString = '<div id="content", class="scrollFix">' + '<div id="windowText">' +
-                '<p><b>' + 'Station No: </b>' + stations.number + '<br><b>Station: </b>' + stations.address + '</br><b>Last Update: </b>' + hours + ':' + minutes + ampm + '</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Empty Bike Stands: </b>' + stations.available_bike_stands +  '<div id="chartDiv1"></div>'  + '</div>' + '<div id="chartDiv2"></div>' +
+                '<p><b>' + 'Station No: </b>' + stations.number + '<br><b>Station: </b>' + stations.address + '</br><b>Last Update: </b>' + hours + ':' + minutes + ampm + '</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Empty Bike Stands: </b>' + stations.available_bike_stands + '<br><button onclick="showWeek()">Weekly Chart</button>' + '<div id="chartDiv1"></div>'  + '</div>' + '<div id="chartDiv2"></div>' +
                 '</div>';
+            
+//            + '<img src="../static/images/linechart.png" class="logo3" style=width:90px;height:45px>'
                 // pupulate the content string for inforwindow 
             var totalAvailable = (stations.available_bikes) / ((stations.available_bikes) + (stations.available_bike_stands));
             var newMarker;
@@ -106,8 +108,9 @@ function initMap() {
             // this is event function to display chart we generated from other js file. 
             google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
                 return function() {
-                    makeChart(this); //buffer
-                    makeChartW(this);
+                    makeChart(this);
+                    makeChartW(this); //buffer
+                    map.setCenter(marker.getPosition());
                 } // close function 
             })(marker, i)); // close another event 
 
@@ -142,6 +145,16 @@ function getdata() {
 
     return heatmapData;
 }
+
+function showWeek() {
+    var x = document.getElementById('ChartDiv2');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
 // this function is for auto complete for my search station function, it use library  -- jquery UI, i populated array availableTaps with station names; 
 // from live data.
 $(function() {

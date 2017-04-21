@@ -92,10 +92,30 @@ position: absolute;
 
 
 /* Styling for the info window */ 
+#content{
+    overflow: hidden !important; 
+    white-space: nowrap;
+}
+
+#windowText{
+    font: 12px Arial,Helvetica,Sans-serif;
+    width: 430px;
+    min-height: 130px;
+    display: flex;  
+    line-height: 1.35;
+}
+
+#chartDiv1{
+    margin-left: 30px;
+}
+
+#chartDiv2{
+    white-space: nowrap;
+    max-height: 140px;
+    display: none;
+}
 
 .scrollFix {
-    width: 600px;
-    height: 400px;
     line-height: 1.35;
     overflow: hidden;
     white-space: nowrap;
