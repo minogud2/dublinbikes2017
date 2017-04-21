@@ -16,7 +16,7 @@ function initMap() {
 
     var bikeLayer = new google.maps.BicyclingLayer();
     bikeLayer.setMap(map);
-
+    
     $.getJSON("https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=a5a72d6f6cd1ffef0ce2648b8c852f7945ce058f", null, function(data) {
         // we decide to use live api to get most updated info of the dynamic data , to produce maker and inforwindo .
         var infowindow = null;
@@ -36,15 +36,15 @@ function initMap() {
             var ampm = hours >= 12 ? 'pm' : 'am';
             // console.log(y)
             // sue current time for last update in the from HH/MM mins 5 mins 
-            var contentString = '<div id="content", class="scrollFix">' +
-                '<p><b>' + 'Station No: </b>' + stations.number + '<br><b>Station: </b>' + stations.address + '</br><b>Last Update: </b>' + hours + ':' + minutes + ampm + '</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Empty Bike Stands: </b>' + stations.available_bike_stands + '<div id="chartDiv1"></div>' + '<div id="chartDiv2"></div>' +
+            var contentString = '<div id="content", class="scrollFix">' + '<div id="windowText">' +
+                '<p><b>' + 'Station No: </b>' + stations.number + '<br><b>Station: </b>' + stations.address + '</br><b>Last Update: </b>' + hours + ':' + minutes + ampm + '</br><b>Available bikes: </b>' + stations.available_bikes + '<br><b>Empty Bike Stands: </b>' + stations.available_bike_stands +  '<div id="chartDiv1"></div>'  + '</div>' + '<div id="chartDiv2"></div>' +
                 '</div>';
                 // pupulate the content string for inforwindow 
-            var totalAvailable = (stations.available_bikes) / (stations.available_bike_stands);
+            var totalAvailable = (stations.available_bikes) / ((stations.available_bikes) + (stations.available_bike_stands));
             var newMarker;
             //this nested if and else are decide for switching icon based on how busy the station is 
             if (totalAvailable == 0) {
-                newMarker = '../static/images/markers/icon0.png';
+                newMarker = '../static/images/markers/icon10.png';
             } else if (totalAvailable > 0 && totalAvailable <= 0.1) {
                 newMarker = '../static/images/markers/icon1.png'; // url
             } else if (totalAvailable > 0.1 && totalAvailable <= 0.2) {
@@ -66,7 +66,7 @@ function initMap() {
             } else if (stations.status == 'CLOSED') {
                 newMarker = '../static/images/markers/iconOff.png'; // url
             } else {
-                newMarker = '../static/images/markers/icon10.png'; // url
+                newMarker = '../static/images/markers/icon0.png'; // url
             }
             //defined maker here 
             marker = new google.maps.Marker({
@@ -107,6 +107,7 @@ function initMap() {
             google.maps.event.addDomListener(marker, 'click', (function(marker, i) {
                 return function() {
                     makeChart(this); //buffer
+                    makeChartW(this);
                 } // close function 
             })(marker, i)); // close another event 
 

@@ -94,8 +94,8 @@ position: absolute;
 /* Styling for the info window */ 
 
 .scrollFix {
-    width: 320px;
-    height: 250px;
+    width: 600px;
+    height: 400px;
     line-height: 1.35;
     overflow: hidden;
     white-space: nowrap;
