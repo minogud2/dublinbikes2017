@@ -45,6 +45,7 @@
           zoom: 16,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+
          var bikeLayer = new google.maps.BicyclingLayer(); // give the  map a new layer (theme)
             bikeLayer.setMap(map);
             
@@ -53,6 +54,7 @@
             var infowindow = null;
             infowindow = new google.maps.InfoWindow({
                 content: '<div class="scrollFix">' + "holding..." + '</div>',
+              
             });// initialise inforwindow and give it some structure and css style;
             var marker, i ;
         
@@ -67,6 +69,7 @@
                 '</div>';  //this where we populate the the content string for inforwindow ;
 
             var totalAvailable = locations.key7/locations.key8; // we want to user this to decide which bike icon to use ;
+
             console.log(totalAvailable);
                 var newMarker;
             
@@ -103,12 +106,15 @@
                 info: contentString,
                 icon:newMarker
           }); 
+
            // generate makers, define some extra properties of maker such as , station num and icon ;
+
             var clickStation;
 
             // infowindow.open(map, newMarkers[i]); // make inforwin
 
             google.maps.event.addListener(marker, 'click', (function(marker) {   // this our first google marker click event , it displays content string we defined earlier.
+
                 return function() {
                     // infowindow.setContent(contentString);
                     infowindow.setContent(this.info);
@@ -128,18 +134,15 @@
                 } // close function
 
             })(marker)); // close maker click event 
-
-
+      
             google.maps.event.addDomListener(marker, 'click', (function(marker) {    // this is our second click event , it shows our chart we generate from another JS file. 
+
                 return function() {
                     makeChart(this); //buffer
                 } // close function 
             })(marker)); // close another event 
     }
   
-
-
-
 $(function() {         // this function, we generate a array full of station name , and use it to perform auto complete for my station search function;
                         
     var availableTags = [];
