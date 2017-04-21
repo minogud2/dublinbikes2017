@@ -1,0 +1,13 @@
+import json
+from pprint import pprint
+import csv
+
+with open('trello.json') as json_data:
+    d = json.load(json_data)
+    pprint(d)
+    
+    with open('trellocsv.csv', 'w') as outf:
+        dw = csv.DictWriter(outf, data[0].keys())
+        dw.writeheader()
+        for row in data:
+            dw.writerow(row)

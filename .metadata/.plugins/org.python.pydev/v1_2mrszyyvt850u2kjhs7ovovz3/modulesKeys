@@ -4224,6 +4224,8 @@ json.decoder|C:\Users\minogud2\Anaconda3\lib\json\decoder.py
 json.encoder|C:\Users\minogud2\Anaconda3\lib\json\encoder.py
 json.scanner|C:\Users\minogud2\Anaconda3\lib\json\scanner.py
 json.tool|C:\Users\minogud2\Anaconda3\lib\json\tool.py
+json2xls.__init__|C:\Users\minogud2\Anaconda3\lib\site-packages\json2xls\__init__.py
+json2xls.json2xls|C:\Users\minogud2\Anaconda3\lib\site-packages\json2xls\json2xls.py
 jsonschema.__init__|C:\Users\minogud2\Anaconda3\lib\site-packages\jsonschema\__init__.py
 jsonschema.__main__|C:\Users\minogud2\Anaconda3\lib\site-packages\jsonschema\__main__.py
 jsonschema._format|C:\Users\minogud2\Anaconda3\lib\site-packages\jsonschema\_format.py
@@ -9472,6 +9474,7 @@ sphinx.writers.texinfo|C:\Users\minogud2\Anaconda3\lib\site-packages\Sphinx-1.4.
 sphinx.writers.text|C:\Users\minogud2\Anaconda3\lib\site-packages\Sphinx-1.4.6-py3.5.egg\sphinx\writers\text.py
 sphinx.writers.websupport|C:\Users\minogud2\Anaconda3\lib\site-packages\Sphinx-1.4.6-py3.5.egg\sphinx\writers\websupport.py
 sphinx.writers.xml|C:\Users\minogud2\Anaconda3\lib\site-packages\Sphinx-1.4.6-py3.5.egg\sphinx\writers\xml.py
+sphinx_rtd_theme.__init__|C:\Users\minogud2\Anaconda3\lib\site-packages\sphinx_rtd_theme\__init__.py
 spyder.__init__|C:\Users\minogud2\Anaconda3\lib\site-packages\spyder\__init__.py
 spyder.app.__init__|C:\Users\minogud2\Anaconda3\lib\site-packages\spyder\app\__init__.py
 spyder.app.cli_options|C:\Users\minogud2\Anaconda3\lib\site-packages\spyder\app\cli_options.py
