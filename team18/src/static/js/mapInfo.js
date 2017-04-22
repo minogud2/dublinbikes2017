@@ -137,7 +137,7 @@ function getdata() {
 
             heatmapData.push({
                 location: new google.maps.LatLng(stations.position.lat, stations.position.lng),
-                weight: stations.available_bikes
+                weight: stations.available_bike_stands
             });
         }
     })
