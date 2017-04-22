@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="sat" key="selection"/>
+		<item value="print" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="print"/>
 			<item value="fri"/>
 			<item value="Friday"/>
 			<item value="wed"/>
@@ -15,7 +16,6 @@
 			<item value="thunesday"/>
 			<item value="    wedInt1 = df[(df[&apos;Day&apos;] == &apos;Wednesday&apos;) &amp; (df[&apos;interval1&apos;] == 1)].mean()"/>
 			<item value="Monday"/>
-			<item value="tue"/>
 		</list>
 		<list key="replacehistory">
 			<item value="sat"/>

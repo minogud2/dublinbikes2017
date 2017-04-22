@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pydev-testrun version="1.0"?><pydev-testsuite>
+<summary errors="0" failures="0" finished="true" name="Test Run: 5" tests="0" total_time="Finished in: 1.24 secs."/>
+<test location="C:\Users\minogud2\Desktop\softEngAssignment4\team18\tests\test.py" status="ok" test="Test.test_aws_connection" time="0.69">
+<stdout/>
+<stderr/>
+</test>
+<test location="C:\Users\minogud2\Desktop\softEngAssignment4\team18\tests\test.py" status="ok" test="Test.test_bike_connection" time="0.47">
+<stdout/>
+<stderr/>
+</test>
+<test location="C:\Users\minogud2\Desktop\softEngAssignment4\team18\tests\test.py" status="ok" test="Test.test_weather_connection" time="0.04">
+<stdout/>
+<stderr/>
+</test>
+<launch mode="run">
+<launch_memento><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration local="true" path="team18 test.py"/>
+]]></launch_memento>
+</launch>
+</pydev-testsuite>

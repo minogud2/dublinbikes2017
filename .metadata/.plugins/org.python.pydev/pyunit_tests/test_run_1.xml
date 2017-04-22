@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pydev-testrun version="1.0"?><pydev-testsuite>
+<summary errors="1" failures="0" finished="true" name="Test Run: 1" tests="0" total_time="Finished in: 0.08 secs."/>
+<test location="C:\Users\minogud2\Desktop\softEngAssignment4\team18\tests\test.py" status="error" test="" time="0.00">
+<stdout/>
+<stderr><![CDATA[Traceback (most recent call last):
+  File "C:\Users\minogud2\Anaconda3\lib\unittest\case.py", line 58, in testPartExecutor
+    yield
+  File "C:\Users\minogud2\Anaconda3\lib\unittest\case.py", line 600, in run
+    testMethod()
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\loader.py", line 418, in loadTestsFromName
+    addr.filename, addr.module)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "C:\Users\minogud2\Anaconda3\lib\site-packages\nose\importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "C:\Users\minogud2\Anaconda3\lib\imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "C:\Users\minogud2\Anaconda3\lib\imp.py", line 172, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 693, in _load
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "C:\Users\minogud2\Desktop\softEngAssignment4\team18\tests\test.py", line 2, in <module>
+    from src.data_scraper import *
+  File "C:\Users\minogud2\Desktop\softEngAssignment4\team18\src\data_scraper.py", line 8, in <module>
+    import schedule
+ImportError: No module named 'schedule'
+]]></stderr>
+</test>
+<launch mode="run">
+<launch_memento><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration local="true" path="team18 test.py"/>
+]]></launch_memento>
+</launch>
+</pydev-testsuite>
